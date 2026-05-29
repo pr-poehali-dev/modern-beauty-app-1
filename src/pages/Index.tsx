@@ -12,13 +12,14 @@ import LoginScreen from "@/components/screens/LoginScreen";
 import MyBookingsScreen from "@/components/screens/MyBookingsScreen";
 import PaymentScreen from "@/components/screens/PaymentScreen";
 import SalonScreen from "@/components/screens/SalonScreen";
+import SettingsScreen from "@/components/screens/SettingsScreen";
 import BottomNav from "@/components/BottomNav";
 import Icon from "@/components/ui/icon";
 
 export type Screen =
   | "home" | "booking" | "history" | "loyalty" | "profile"
   | "masters" | "catalog" | "chat" | "login"
-  | "my-bookings" | "payment" | "salon";
+  | "my-bookings" | "payment" | "salon" | "settings";
 
 export default function Index() {
   const [activeScreen, setActiveScreen] = useState<Screen>("home");
@@ -41,6 +42,7 @@ export default function Index() {
       case "my-bookings": return <MyBookingsScreen onNavigate={setActiveScreen} />;
       case "payment":     return <PaymentScreen onNavigate={setActiveScreen} />;
       case "salon":       return <SalonScreen onNavigate={setActiveScreen} />;
+      case "settings":    return <SettingsScreen onNavigate={setActiveScreen} />;
       default:            return <HomeScreen onNavigate={setActiveScreen} />;
     }
   };
@@ -71,16 +73,6 @@ export default function Index() {
             </div>
           </button>
           <div className="flex items-center gap-2">
-            {/* Кнопка оплаты */}
-            <button
-              onClick={() => setActiveScreen("payment")}
-              className="relative w-11 h-11 rounded-2xl bg-[hsl(var(--orange-light))] border border-[hsl(var(--primary))]/20 flex items-center justify-center transition-all active:scale-95"
-            >
-              <Icon name="CreditCard" size={20} className="text-[hsl(var(--primary))]" />
-              {showPaymentBadge && (
-                <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-red-500 rounded-full border-2 border-[hsl(var(--gray-soft))]" />
-              )}
-            </button>
             {/* Мои записи */}
             <button
               onClick={() => setActiveScreen("my-bookings")}
@@ -96,6 +88,21 @@ export default function Index() {
             >
               <Icon name="MessageCircle" size={20} className="text-[hsl(var(--text-secondary))]" />
               <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-[hsl(var(--primary))] rounded-full border-2 border-[hsl(var(--gray-soft))]" />
+            </button>
+            {/* Настройки */}
+            <button
+              onClick={() => setActiveScreen("settings")}
+              className={`w-11 h-11 rounded-2xl border flex items-center justify-center transition-all active:scale-95 shadow-sm ${
+                activeScreen === "settings"
+                  ? "gradient-orange border-transparent orange-glow"
+                  : "bg-white border-[hsl(var(--border))]"
+              }`}
+            >
+              <Icon
+                name="Settings"
+                size={20}
+                className={activeScreen === "settings" ? "text-white" : "text-[hsl(var(--text-secondary))]"}
+              />
             </button>
           </div>
         </header>
