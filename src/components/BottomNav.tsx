@@ -7,16 +7,16 @@ interface BottomNavProps {
 }
 
 const navItems = [
-  { screen: "home" as Screen, icon: "Home", label: "Главная" },
-  { screen: "booking" as Screen, icon: "CalendarPlus", label: "Запись" },
-  { screen: "history" as Screen, icon: "Clock", label: "История" },
-  { screen: "loyalty" as Screen, icon: "Star", label: "Бонусы" },
-  { screen: "profile" as Screen, icon: "User", label: "Профиль" },
+  { screen: "booking" as Screen,  icon: "CalendarPlus", label: "Запись" },
+  { screen: "loyalty" as Screen,  icon: "Star",         label: "Баллы" },
+  { screen: "history" as Screen,  icon: "Clock",        label: "История" },
+  { screen: "profile" as Screen,  icon: "User",         label: "Профиль" },
+  { screen: "salon" as Screen,    icon: "Store",        label: "Салон" },
 ];
 
 export default function BottomNav({ activeScreen, onNavigate }: BottomNavProps) {
   return (
-    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-white border-t border-[hsl(var(--border))] z-30 pb-safe">
+    <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-[hsl(var(--gray-soft))] border-t border-[hsl(var(--border))] z-30 pb-safe">
       <div className="flex items-center justify-around px-2 pt-2 pb-6">
         {navItems.map((item) => {
           const isActive = activeScreen === item.screen;
