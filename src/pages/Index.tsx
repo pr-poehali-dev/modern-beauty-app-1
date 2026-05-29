@@ -13,13 +13,14 @@ import MyBookingsScreen from "@/components/screens/MyBookingsScreen";
 import PaymentScreen from "@/components/screens/PaymentScreen";
 import SalonScreen from "@/components/screens/SalonScreen";
 import SettingsScreen from "@/components/screens/SettingsScreen";
+import PromoScreen from "@/components/screens/PromoScreen";
 import BottomNav from "@/components/BottomNav";
 import Icon from "@/components/ui/icon";
 
 export type Screen =
   | "home" | "booking" | "history" | "loyalty" | "profile"
   | "masters" | "catalog" | "chat" | "login"
-  | "my-bookings" | "payment" | "salon" | "settings";
+  | "my-bookings" | "payment" | "salon" | "settings" | "promos";
 
 export default function Index() {
   const [activeScreen, setActiveScreen] = useState<Screen>("home");
@@ -43,6 +44,7 @@ export default function Index() {
       case "payment":     return <PaymentScreen onNavigate={setActiveScreen} />;
       case "salon":       return <SalonScreen onNavigate={setActiveScreen} />;
       case "settings":    return <SettingsScreen onNavigate={setActiveScreen} />;
+      case "promos":      return <PromoScreen onNavigate={setActiveScreen} />;
       default:            return <HomeScreen onNavigate={setActiveScreen} />;
     }
   };

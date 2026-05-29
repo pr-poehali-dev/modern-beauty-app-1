@@ -14,7 +14,7 @@ const actions: { icon: string; label: string; screen: Screen; color: string; tex
   { icon: "CalendarPlus",  label: "Запись",        screen: "booking",      color: "gradient-orange orange-glow", textColor: "text-white" },
   { icon: "Star",          label: "Баллы",         screen: "loyalty",      color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
   { icon: "Clock",         label: "История",       screen: "history",      color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
-  { icon: "Percent",       label: "Акции",         screen: "loyalty",      color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
+  { icon: "Percent",       label: "Акции",         screen: "promos",       color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
   { icon: "CalendarDays",  label: "Мои записи",    screen: "my-bookings",  color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
   { icon: "MessageCircle", label: "Чат",           screen: "chat",         color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
   { icon: "Scissors",      label: "Мастера",       screen: "masters",      color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
