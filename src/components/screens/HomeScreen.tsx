@@ -5,20 +5,28 @@ interface HomeScreenProps {
   onNavigate: (screen: Screen) => void;
 }
 
-const MASTER1 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/e3ed684a-5b91-442d-bbef-325e47bc1166.jpg";
-const MASTER2 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/071bff46-8350-48ce-b930-d2203794d5d2.jpg";
-const MASTER3 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/ebd24705-5d23-4a30-b95a-a058766b8e3f.jpg";
-const MASTER4 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/8c5a4941-6d8d-445a-908c-537218ec19c5.jpg";
+const MASTER1  = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/e3ed684a-5b91-442d-bbef-325e47bc1166.jpg";
+const MASTER2  = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/071bff46-8350-48ce-b930-d2203794d5d2.jpg";
+const MASTER3  = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/ebd24705-5d23-4a30-b95a-a058766b8e3f.jpg";
+const MASTER4  = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/8c5a4941-6d8d-445a-908c-537218ec19c5.jpg";
+const PROFILE  = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/16cbc8c4-ea9d-4083-9fff-12c510e31a77.jpg";
+const MASHA    = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/db101f73-ed27-44e6-bb2f-9ee28ae6fb24.jpg";
+const MISHA    = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/c1c9acb8-c2e4-4a05-8839-4413faf268b3.jpg";
 
 const actions: { icon: string; label: string; screen: Screen; color: string; textColor: string }[] = [
   { icon: "CalendarPlus",  label: "Запись",        screen: "booking",      color: "gradient-orange orange-glow", textColor: "text-white" },
-  { icon: "Star",          label: "Баллы",         screen: "loyalty",      color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
+  { icon: "User",          label: "Профиль",       screen: "profile",      color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
   { icon: "Clock",         label: "История",       screen: "history",      color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
   { icon: "Percent",       label: "Акции",         screen: "promos",       color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
   { icon: "CalendarDays",  label: "Мои записи",    screen: "my-bookings",  color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
   { icon: "MessageCircle", label: "Чат",           screen: "chat",         color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
   { icon: "Scissors",      label: "Мастера",       screen: "masters",      color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
   { icon: "CreditCard",    label: "Оплата",        screen: "payment",      color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
+];
+
+const family = [
+  { name: "Маша",  relation: "Дочь",   age: "8 лет",  img: MASHA,   lastVisit: "1 мая",    nextVisit: null           },
+  { name: "Миша",  relation: "Сын",    age: "12 лет", img: MISHA,   lastVisit: "15 апр.",  nextVisit: "12 июня 11:00" },
 ];
 
 const masters = [
@@ -66,6 +74,45 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
         </div>
       </div>
 
+      {/* Profile + Family block */}
+      <div className="grid grid-cols-2 gap-2 animate-fade-in-up delay-150">
+        {/* My profile */}
+        <button onClick={() => onNavigate("profile")}
+          className="bg-white border border-[hsl(var(--border))] rounded-2xl p-3 flex items-center gap-2.5 shadow-sm text-left transition-all active:scale-95">
+          <div className="relative shrink-0">
+            <div className="w-11 h-11 rounded-xl overflow-hidden border-2 border-[hsl(var(--primary))]">
+              <img src={PROFILE} alt="Анна" className="w-full h-full object-cover" />
+            </div>
+            <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-green-400 rounded-full border-2 border-white" />
+          </div>
+          <div className="min-w-0">
+            <p className="font-golos font-bold text-sm text-[hsl(var(--text-main))] truncate">Анна Петрова</p>
+            <p className="font-golos text-[10px] text-[hsl(var(--text-secondary))]">⭐ Постоянный гость</p>
+            <p className="font-golos text-[10px] text-[hsl(var(--primary))] font-semibold">1 240 Б = 620 ₽</p>
+          </div>
+        </button>
+
+        {/* Family quick access */}
+        <button onClick={() => onNavigate("profile")}
+          className="bg-white border border-[hsl(var(--border))] rounded-2xl p-3 shadow-sm text-left transition-all active:scale-95">
+          <p className="font-golos font-semibold text-xs text-[hsl(var(--text-main))] mb-2">Моя семья</p>
+          <div className="flex items-center gap-1.5">
+            {family.map(m => (
+              <div key={m.name} className="flex flex-col items-center gap-1">
+                <div className="w-9 h-9 rounded-xl overflow-hidden border-2 border-[hsl(var(--border))]">
+                  <img src={m.img} alt={m.name} className="w-full h-full object-cover" />
+                </div>
+                <p className="font-golos text-[9px] font-semibold text-[hsl(var(--text-secondary))]">{m.name}</p>
+              </div>
+            ))}
+            <button onClick={e => { e.stopPropagation(); onNavigate("booking"); }}
+              className="w-9 h-9 rounded-xl bg-[hsl(var(--orange-light))] flex items-center justify-center border border-[hsl(var(--primary))]/20 shrink-0">
+              <Icon name="CalendarPlus" size={14} className="text-[hsl(var(--primary))]" />
+            </button>
+          </div>
+        </button>
+      </div>
+
       {/* Quick actions — 4x2 compact grid */}
       <div className="grid grid-cols-4 gap-2 animate-fade-in-up delay-200">
         {actions.map((a, i) => (
@@ -74,7 +121,10 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
             onClick={() => onNavigate(a.screen)}
             className={`${a.color} ${a.textColor} rounded-2xl py-3 flex flex-col items-center gap-1.5 transition-all active:scale-95 shadow-sm`}
           >
-            <Icon name={a.icon} size={19} />
+            {a.label === "Профиль"
+              ? <div className="w-5 h-5 rounded-full overflow-hidden border border-white/50"><img src={PROFILE} alt="" className="w-full h-full object-cover" /></div>
+              : <Icon name={a.icon} size={19} />
+            }
             <span className="font-golos text-[9px] font-semibold text-center leading-tight">{a.label}</span>
           </button>
         ))}

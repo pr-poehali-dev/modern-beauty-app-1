@@ -8,6 +8,8 @@ interface ProfileScreenProps {
 
 const PROFILE_IMG = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/16cbc8c4-ea9d-4083-9fff-12c510e31a77.jpg";
 const MASTER_IMG  = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/e3ed684a-5b91-442d-bbef-325e47bc1166.jpg";
+const MASHA_IMG   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/db101f73-ed27-44e6-bb2f-9ee28ae6fb24.jpg";
+const MISHA_IMG   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/c1c9acb8-c2e4-4a05-8839-4413faf268b3.jpg";
 
 type SubScreen = null | "notifications" | "payments" | "settings" | "privacy" | "agreement";
 type Tab = "profile" | "family" | "settings";
@@ -378,16 +380,33 @@ export default function ProfileScreen({ onNavigate }: ProfileScreenProps) {
       {tab === "family" && (
         <div className="flex flex-col gap-2 animate-fade-in flex-1 overflow-y-auto scrollbar-hide min-h-0">
           {[
-            { name: "Маша", relation: "Дочь", age: "8 лет",  avatar: "👧" },
-            { name: "Миша", relation: "Сын",  age: "12 лет", avatar: "👦" },
+            { name: "Маша", relation: "Дочь", age: "8 лет",  img: MASHA_IMG, lastVisit: "1 мая",   nextVisit: null,            phone: null,              note: "Любит короткие стрижки" },
+            { name: "Миша", relation: "Сын",  age: "12 лет", img: MISHA_IMG, lastVisit: "15 апр.", nextVisit: "12 июня 11:00", phone: null,              note: "Обычная стрижка, не короче 2 см" },
           ].map((m, i) => (
-            <div key={i} className="bg-white border border-[hsl(var(--border))] rounded-2xl px-4 py-3.5 flex items-center gap-3 shadow-sm">
-              <div className="w-11 h-11 bg-[hsl(var(--orange-light))] rounded-2xl flex items-center justify-center text-2xl shrink-0">{m.avatar}</div>
-              <div className="flex-1">
-                <p className="font-golos font-semibold text-sm text-[hsl(var(--text-main))]">{m.name}</p>
-                <p className="font-golos text-xs text-[hsl(var(--text-secondary))]">{m.relation} · {m.age}</p>
+            <div key={i} className="bg-white border border-[hsl(var(--border))] rounded-2xl overflow-hidden shadow-sm">
+              <div className="px-4 py-3.5 flex items-center gap-3">
+                <div className="w-14 h-14 rounded-2xl overflow-hidden border-2 border-[hsl(var(--primary))]/30 shrink-0">
+                  <img src={m.img} alt={m.name} className="w-full h-full object-cover" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-golos font-bold text-sm text-[hsl(var(--text-main))]">{m.name}</p>
+                  <p className="font-golos text-xs text-[hsl(var(--text-secondary))]">{m.relation} · {m.age}</p>
+                  {m.note && <p className="font-golos text-[10px] text-[hsl(var(--text-secondary))] mt-0.5 italic">«{m.note}»</p>}
+                </div>
+                <button onClick={() => onNavigate("booking")} className="gradient-orange text-white font-golos font-bold text-xs px-3 py-2 rounded-xl shrink-0">Записать</button>
               </div>
-              <button onClick={() => onNavigate("booking")} className="gradient-orange text-white font-golos font-bold text-xs px-3 py-1.5 rounded-xl">Записать</button>
+              <div className="px-4 pb-3 flex items-center gap-3 border-t border-[hsl(var(--border))]">
+                <div className="flex-1">
+                  <p className="font-golos text-[10px] text-[hsl(var(--text-secondary))]">Последний визит</p>
+                  <p className="font-golos text-xs font-semibold text-[hsl(var(--text-main))]">{m.lastVisit}</p>
+                </div>
+                {m.nextVisit && (
+                  <div className="flex-1">
+                    <p className="font-golos text-[10px] text-[hsl(var(--text-secondary))]">Запись</p>
+                    <p className="font-golos text-xs font-semibold text-[hsl(var(--primary))]">{m.nextVisit}</p>
+                  </div>
+                )}
+              </div>
             </div>
           ))}
           <button className="bg-white border-2 border-dashed border-[hsl(var(--border))] rounded-2xl py-4 flex items-center justify-center gap-2 font-golos text-sm text-[hsl(var(--text-secondary))]">
