@@ -158,7 +158,7 @@ export default function SalonScreen({ onNavigate }: SalonScreenProps) {
         <div className="flex flex-col gap-3 animate-fade-in">
           {/* Stats */}
           <div className="grid grid-cols-3 gap-2">
-            {[["6+", "лет работы"], ["4", "мастера"], ["2000+", "клиентов"]].map(([num, label]) => (
+            {[["26+", "лет работы"], ["1", "мастер"], ["2000+", "клиентов"]].map(([num, label]) => (
               <div key={label} className="bg-white border border-[hsl(var(--border))] rounded-2xl p-3 text-center shadow-sm">
                 <p className="font-golos font-bold text-2xl text-[hsl(var(--primary))]">{num}</p>
                 <p className="font-golos text-[10px] text-[hsl(var(--text-secondary))] mt-0.5">{label}</p>
@@ -169,7 +169,7 @@ export default function SalonScreen({ onNavigate }: SalonScreenProps) {
           {/* About text */}
           <div className="bg-white border border-[hsl(var(--border))] rounded-2xl px-4 py-3 shadow-sm">
             <p className="font-golos text-sm text-[hsl(var(--text-secondary))] leading-relaxed">
-              Салон «Модерн» — семейный салон красоты в центре Городца. Работаем с 2018 года. Мастера регулярно проходят обучение, используем Olaplex, Kerastase, Redken, Schwarzkopf.
+              Салон «Модерн» — семейный салон красоты в центре Городца. Основан <span className="font-semibold text-[hsl(var(--text-main))]">28 августа 1998 года</span>. Мастер регулярно проходит обучение, используем Olaplex, Kerastase, Redken, Schwarzkopf.
             </p>
           </div>
 
