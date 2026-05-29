@@ -6,7 +6,10 @@ interface ProfileScreenProps {
   onNavigate: (screen: Screen) => void;
 }
 
-const MASTER_IMG = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/071bff46-8350-48ce-b930-d2203794d5d2.jpg";
+// Профиль пользователя — фото клиента
+const PROFILE_IMG = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/16cbc8c4-ea9d-4083-9fff-12c510e31a77.jpg";
+// Любимый мастер
+const MASTER_IMG  = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/e3ed684a-5b91-442d-bbef-325e47bc1166.jpg";
 
 const family = [
   { name: "Маша", relation: "Дочь", age: "8 лет", avatar: "👧" },
@@ -142,7 +145,7 @@ export default function ProfileScreen({ onNavigate }: ProfileScreenProps) {
       <div className="flex items-center gap-4 mb-6 animate-fade-in-up">
         <div className="relative">
           <div className="w-20 h-20 rounded-2xl overflow-hidden border-2 border-[hsl(var(--primary))]">
-            <img src={MASTER_IMG} alt="Профиль" className="w-full h-full object-cover" />
+            <img src={PROFILE_IMG} alt="Профиль" className="w-full h-full object-cover" />
           </div>
           <button className="absolute -bottom-1 -right-1 w-7 h-7 gradient-orange rounded-lg flex items-center justify-center">
             <Icon name="Camera" size={13} className="text-white" />

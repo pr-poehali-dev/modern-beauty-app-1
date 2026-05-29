@@ -6,53 +6,46 @@ interface MastersScreenProps {
   onNavigate: (screen: Screen) => void;
 }
 
-const MASTER_IMG = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/071bff46-8350-48ce-b930-d2203794d5d2.jpg";
-const WORK_IMG = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/c78ea4e6-a248-4ca1-b12c-b68ff0e40c63.jpg";
+const MASTER1 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/e3ed684a-5b91-442d-bbef-325e47bc1166.jpg";
+const MASTER2 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/071bff46-8350-48ce-b930-d2203794d5d2.jpg";
+const MASTER3 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/ebd24705-5d23-4a30-b95a-a058766b8e3f.jpg";
+const MASTER4 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/8c5a4941-6d8d-445a-908c-537218ec19c5.jpg";
+const WORK1   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/7c69e209-43ba-4185-b561-0b5a8cff492d.jpg";
+const WORK2   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/16cbc8c4-ea9d-4083-9fff-12c510e31a77.jpg";
+const WORK3   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/074f6916-0888-4bbb-a368-79f2886fb8e8.jpg";
 
 const masters = [
   {
-    name: "Анастасия Романова",
-    title: "Старший колорист, стилист",
-    experience: "9 лет",
-    rating: 4.9,
-    reviews: 127,
+    name: "Анастасия Романова", title: "Старший колорист, стилист",
+    experience: "9 лет", rating: 4.9, reviews: 127,
     bio: "Специализируется на сложном окрашивании и авторских техниках. Победитель регионального чемпионата по колористике 2024.",
     specialties: ["Балаяж", "Омбре", "Сложное окрашивание", "Стрижки"],
-    freeSlot: "Завтра, 10:00",
-    favorite: true,
+    freeSlot: "Завтра, 10:00", favorite: true,
+    avatar: MASTER1, gallery: [WORK1, WORK2, WORK3, WORK1, WORK2, WORK3],
   },
   {
-    name: "Мария Смирнова",
-    title: "Мастер по стрижкам",
-    experience: "6 лет",
-    rating: 4.8,
-    reviews: 89,
+    name: "Мария Смирнова", title: "Мастер по стрижкам",
+    experience: "6 лет", rating: 4.8, reviews: 89,
     bio: "Мастер классических и современных стрижек для всей семьи. Особая любовь — детские стрижки.",
     specialties: ["Женские стрижки", "Мужские стрижки", "Детские стрижки"],
-    freeSlot: "Сегодня, 16:00",
-    favorite: false,
+    freeSlot: "Сегодня, 16:00", favorite: false,
+    avatar: MASTER2, gallery: [WORK2, WORK1, WORK3, WORK2, WORK3, WORK1],
   },
   {
-    name: "Елена Козлова",
-    title: "Мастер маникюра и бровей",
-    experience: "7 лет",
-    rating: 4.9,
-    reviews: 203,
+    name: "Елена Козлова", title: "Мастер маникюра и бровей",
+    experience: "7 лет", rating: 4.9, reviews: 203,
     bio: "Сертифицированный мастер маникюра. Работает с гель-лаками премиум класса. Эксперт по коррекции бровей.",
     specialties: ["Маникюр", "Педикюр", "Брови", "Ресницы"],
-    freeSlot: "Завтра, 14:30",
-    favorite: false,
+    freeSlot: "Завтра, 14:30", favorite: false,
+    avatar: MASTER3, gallery: [WORK3, WORK1, WORK2, WORK3, WORK1, WORK2],
   },
   {
-    name: "Светлана Новикова",
-    title: "Парикмахер-универсал",
-    experience: "11 лет",
-    rating: 4.7,
-    reviews: 156,
+    name: "Светлана Новикова", title: "Парикмахер-универсал",
+    experience: "11 лет", rating: 4.7, reviews: 156,
     bio: "Универсальный мастер с многолетним опытом. Работает с любым типом волос.",
     specialties: ["Стрижки", "Укладки", "Уход за волосами"],
-    freeSlot: "Послезавтра, 12:00",
-    favorite: false,
+    freeSlot: "Послезавтра, 12:00", favorite: false,
+    avatar: MASTER4, gallery: [WORK1, WORK3, WORK2, WORK1, WORK3, WORK2],
   },
 ];
 
@@ -77,7 +70,7 @@ export default function MastersScreen({ onNavigate }: MastersScreenProps) {
         {/* Hero */}
         <div className="px-5 mb-4">
           <div className="relative rounded-3xl overflow-hidden h-64">
-            <img src={MASTER_IMG} alt={selected.name} className="w-full h-full object-cover object-top" />
+            <img src={selected.avatar} alt={selected.name} className="w-full h-full object-cover object-top" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
             <div className="absolute bottom-4 left-4 right-4">
               <h2 className="font-golos font-bold text-xl text-white">{selected.name}</h2>
@@ -121,9 +114,9 @@ export default function MastersScreen({ onNavigate }: MastersScreenProps) {
           <div>
             <p className="font-golos font-semibold text-[hsl(var(--text-main))] mb-2">Работы</p>
             <div className="grid grid-cols-3 gap-2">
-              {[1, 2, 3, 4, 5, 6].map((n) => (
+              {selected.gallery.map((img, n) => (
                 <div key={n} className="aspect-square rounded-xl overflow-hidden">
-                  <img src={WORK_IMG} alt={`Работа ${n}`} className="w-full h-full object-cover" />
+                  <img src={img} alt={`Работа ${n + 1}`} className="w-full h-full object-cover" />
                 </div>
               ))}
             </div>
@@ -201,7 +194,7 @@ export default function MastersScreen({ onNavigate }: MastersScreenProps) {
             style={{ animationDelay: `${i * 0.1}s` }}
           >
             <div className="relative">
-              <img src={MASTER_IMG} alt={master.name} className="w-16 h-16 rounded-2xl object-cover object-top" />
+              <img src={master.avatar} alt={master.name} className="w-16 h-16 rounded-2xl object-cover object-top" />
               {master.favorite && (
                 <div className="absolute -top-1 -right-1 w-5 h-5 gradient-orange rounded-full flex items-center justify-center">
                   <Icon name="Heart" size={10} className="text-white fill-white" />

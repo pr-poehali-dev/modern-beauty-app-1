@@ -5,9 +5,10 @@ interface HomeScreenProps {
   onNavigate: (screen: Screen) => void;
 }
 
-const SALON_IMG = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/b1d4ff4b-73d5-4053-83b1-50046ba5374d.jpg";
-const MASTER_IMG = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/071bff46-8350-48ce-b930-d2203794d5d2.jpg";
-
+const MASTER1 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/e3ed684a-5b91-442d-bbef-325e47bc1166.jpg";
+const MASTER2 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/071bff46-8350-48ce-b930-d2203794d5d2.jpg";
+const MASTER3 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/ebd24705-5d23-4a30-b95a-a058766b8e3f.jpg";
+const MASTER4 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/8c5a4941-6d8d-445a-908c-537218ec19c5.jpg";
 const promos = [
   { title: "Окрашивание + стрижка", desc: "Скидка 20% до конца мая", badge: "-20%" },
   { title: "Семейный комплекс", desc: "+250 баллов за визит 3 человек", badge: "+250 б" },
@@ -15,15 +16,15 @@ const promos = [
 ];
 
 const quickActions = [
-  { icon: "CalendarPlus", label: "Онлайн-запись", screen: "booking" as Screen, color: "gradient-orange text-white orange-glow" },
-  { icon: "Users", label: "Семейная запись", screen: "booking" as Screen, color: "bg-[hsl(var(--orange-light))] text-[hsl(var(--primary))]" },
-  { icon: "RotateCcw", label: "Повторить визит", screen: "history" as Screen, color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
-  { icon: "Star", label: "Мои баллы", screen: "loyalty" as Screen, color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
-  { icon: "Clock", label: "История", screen: "history" as Screen, color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
-  { icon: "ShoppingBag", label: "Каталог", screen: "catalog" as Screen, color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
-  { icon: "MessageCircle", label: "Чат", screen: "chat" as Screen, color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
-  { icon: "Scissors", label: "Мастера", screen: "masters" as Screen, color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
-  { icon: "X", label: "Отменить запись", screen: "booking" as Screen, color: "bg-red-50 text-red-400" },
+  { icon: "CalendarPlus",  label: "Онлайн-запись",   screen: "booking" as Screen,      color: "gradient-orange text-white orange-glow" },
+  { icon: "Users",         label: "Семейная запись",  screen: "booking" as Screen,      color: "bg-[hsl(var(--orange-light))] text-[hsl(var(--primary))]" },
+  { icon: "CalendarDays",  label: "Мои записи",       screen: "my-bookings" as Screen,  color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
+  { icon: "Star",          label: "Мои баллы",        screen: "loyalty" as Screen,      color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
+  { icon: "Clock",         label: "История",          screen: "history" as Screen,      color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
+  { icon: "ShoppingBag",   label: "Каталог",          screen: "catalog" as Screen,      color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
+  { icon: "MessageCircle", label: "Чат",              screen: "chat" as Screen,         color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
+  { icon: "CreditCard",    label: "Оплата",           screen: "payment" as Screen,      color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
+  { icon: "Scissors",      label: "Мастера",          screen: "masters" as Screen,      color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
 ];
 
 export default function HomeScreen({ onNavigate }: HomeScreenProps) {
@@ -67,7 +68,7 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
           <p className="font-golos text-xs font-semibold text-[hsl(var(--text-secondary))] uppercase tracking-wide">Ближайшая запись</p>
         </div>
         <div className="flex items-center gap-3">
-          <img src={MASTER_IMG} alt="Мастер" className="w-14 h-14 rounded-2xl object-cover" />
+          <img src={MASTER1} alt="Мастер" className="w-14 h-14 rounded-2xl object-cover" />
           <div className="flex-1">
             <p className="font-golos font-semibold text-[hsl(var(--text-main))]">Стрижка + укладка</p>
             <p className="font-golos text-sm text-[hsl(var(--text-secondary))]">Анастасия Романова</p>
@@ -114,7 +115,7 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
       <div className="animate-fade-in-up delay-300">
         <p className="font-golos font-semibold text-[hsl(var(--text-main))] mb-3">Рекомендация мастера</p>
         <div className="bg-[hsl(var(--gray-soft))] rounded-3xl p-4 flex gap-3">
-          <img src={MASTER_IMG} alt="Мастер" className="w-12 h-12 rounded-2xl object-cover shrink-0" />
+          <img src={MASTER1} alt="Мастер" className="w-12 h-12 rounded-2xl object-cover shrink-0" />
           <div>
             <p className="font-golos font-semibold text-sm text-[hsl(var(--text-main))]">Анастасия Романова</p>
             <p className="font-golos text-xs text-[hsl(var(--text-secondary))] mt-1 leading-relaxed">
@@ -159,14 +160,19 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
           <button onClick={() => onNavigate("masters")} className="font-golos text-xs text-[hsl(var(--primary))] font-medium">Все →</button>
         </div>
         <div className="flex gap-3 overflow-x-auto scrollbar-hide -mx-5 px-5">
-          {["Анастасия", "Мария", "Елена", "Светлана"].map((name, i) => (
+          {[
+            { name: "Анастасия", img: MASTER1 },
+            { name: "Мария",     img: MASTER2 },
+            { name: "Елена",     img: MASTER3 },
+            { name: "Светлана",  img: MASTER4 },
+          ].map(({ name, img }, i) => (
             <button
               key={i}
               onClick={() => onNavigate("masters")}
               className="flex flex-col items-center gap-2 min-w-[72px]"
             >
               <div className="w-16 h-16 rounded-2xl overflow-hidden bg-[hsl(var(--gray-soft))] border-2 border-[hsl(var(--border))]">
-                <img src={MASTER_IMG} alt={name} className="w-full h-full object-cover" />
+                <img src={img} alt={name} className="w-full h-full object-cover" />
               </div>
               <span className="font-golos text-xs text-[hsl(var(--text-main))] font-medium">{name}</span>
             </button>

@@ -9,10 +9,15 @@ import MastersScreen from "@/components/screens/MastersScreen";
 import CatalogScreen from "@/components/screens/CatalogScreen";
 import ChatScreen from "@/components/screens/ChatScreen";
 import LoginScreen from "@/components/screens/LoginScreen";
+import MyBookingsScreen from "@/components/screens/MyBookingsScreen";
+import PaymentScreen from "@/components/screens/PaymentScreen";
 import BottomNav from "@/components/BottomNav";
 import Icon from "@/components/ui/icon";
 
-export type Screen = "home" | "booking" | "history" | "loyalty" | "profile" | "masters" | "catalog" | "chat" | "login";
+export type Screen =
+  | "home" | "booking" | "history" | "loyalty" | "profile"
+  | "masters" | "catalog" | "chat" | "login"
+  | "my-bookings" | "payment";
 
 export default function Index() {
   const [activeScreen, setActiveScreen] = useState<Screen>("home");
@@ -24,21 +29,27 @@ export default function Index() {
 
   const renderScreen = () => {
     switch (activeScreen) {
-      case "home": return <HomeScreen onNavigate={setActiveScreen} />;
-      case "booking": return <BookingScreen onNavigate={setActiveScreen} />;
-      case "history": return <HistoryScreen onNavigate={setActiveScreen} />;
-      case "loyalty": return <LoyaltyScreen onNavigate={setActiveScreen} />;
-      case "profile": return <ProfileScreen onNavigate={setActiveScreen} />;
-      case "masters": return <MastersScreen onNavigate={setActiveScreen} />;
-      case "catalog": return <CatalogScreen onNavigate={setActiveScreen} />;
-      case "chat": return <ChatScreen onNavigate={setActiveScreen} />;
-      default: return <HomeScreen onNavigate={setActiveScreen} />;
+      case "home":        return <HomeScreen onNavigate={setActiveScreen} />;
+      case "booking":     return <BookingScreen onNavigate={setActiveScreen} />;
+      case "history":     return <HistoryScreen onNavigate={setActiveScreen} />;
+      case "loyalty":     return <LoyaltyScreen onNavigate={setActiveScreen} />;
+      case "profile":     return <ProfileScreen onNavigate={setActiveScreen} />;
+      case "masters":     return <MastersScreen onNavigate={setActiveScreen} />;
+      case "catalog":     return <CatalogScreen onNavigate={setActiveScreen} />;
+      case "chat":        return <ChatScreen onNavigate={setActiveScreen} />;
+      case "my-bookings": return <MyBookingsScreen onNavigate={setActiveScreen} />;
+      case "payment":     return <PaymentScreen onNavigate={setActiveScreen} />;
+      default:            return <HomeScreen onNavigate={setActiveScreen} />;
     }
   };
+
+  // Уведомление об оплате — показываем как плашку
+  const showPaymentBadge = true;
 
   return (
     <div className="min-h-screen bg-[hsl(var(--gray-soft))] flex justify-center items-start">
       <div className="w-full max-w-[430px] min-h-screen bg-white relative flex flex-col overflow-hidden shadow-2xl">
+
         {/* Header */}
         <header className="flex items-center justify-between px-5 pt-12 pb-3 bg-white z-20 sticky top-0">
           <div className="flex items-center gap-2">
@@ -48,17 +59,30 @@ export default function Index() {
             <span className="font-golos font-bold text-lg text-[hsl(var(--text-main))]">Модерн</span>
           </div>
           <div className="flex items-center gap-2">
+            {/* Кнопка оплаты */}
             <button
-              onClick={() => setActiveScreen("catalog")}
-              className="w-9 h-9 rounded-xl bg-[hsl(var(--gray-soft))] flex items-center justify-center transition-all active:scale-95"
+              onClick={() => setActiveScreen("payment")}
+              className="relative w-9 h-9 rounded-xl bg-[hsl(var(--orange-light))] flex items-center justify-center transition-all active:scale-95"
             >
-              <Icon name="ShoppingBag" size={18} className="text-[hsl(var(--text-secondary))]" />
+              <Icon name="CreditCard" size={17} className="text-[hsl(var(--primary))]" />
+              {showPaymentBadge && (
+                <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white" />
+              )}
             </button>
+            {/* Мои записи */}
+            <button
+              onClick={() => setActiveScreen("my-bookings")}
+              className="w-9 h-9 rounded-xl bg-[hsl(var(--gray-soft))] flex items-center justify-center transition-all active:scale-95 relative"
+            >
+              <Icon name="CalendarDays" size={17} className="text-[hsl(var(--text-secondary))]" />
+              <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[hsl(var(--primary))] rounded-full text-white text-[9px] font-bold flex items-center justify-center">3</span>
+            </button>
+            {/* Чат */}
             <button
               onClick={() => setActiveScreen("chat")}
-              className="w-9 h-9 rounded-xl bg-[hsl(var(--orange-light))] flex items-center justify-center transition-all active:scale-95 relative"
+              className="w-9 h-9 rounded-xl bg-[hsl(var(--gray-soft))] flex items-center justify-center transition-all active:scale-95 relative"
             >
-              <Icon name="MessageCircle" size={18} className="text-[hsl(var(--primary))]" />
+              <Icon name="MessageCircle" size={17} className="text-[hsl(var(--text-secondary))]" />
               <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-[hsl(var(--primary))] rounded-full border-2 border-white" />
             </button>
           </div>

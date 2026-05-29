@@ -6,48 +6,33 @@ interface HistoryScreenProps {
   onNavigate: (screen: Screen) => void;
 }
 
-const MASTER_IMG = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/071bff46-8350-48ce-b930-d2203794d5d2.jpg";
-const WORK_IMG = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/c78ea4e6-a248-4ca1-b12c-b68ff0e40c63.jpg";
+const MASTER1 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/e3ed684a-5b91-442d-bbef-325e47bc1166.jpg";
+const MASTER2 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/071bff46-8350-48ce-b930-d2203794d5d2.jpg";
+const MASTER3 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/ebd24705-5d23-4a30-b95a-a058766b8e3f.jpg";
+const WORK1   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/7c69e209-43ba-4185-b561-0b5a8cff492d.jpg";
+const WORK2   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/16cbc8c4-ea9d-4083-9fff-12c510e31a77.jpg";
 
 const history = [
   {
-    client: "Анна Петрова",
-    service: "Балаяж + стрижка",
-    master: "Анастасия Романова",
-    date: "12 мая 2026",
-    time: "14:00",
-    price: 8500,
-    points: 425,
-    pointsExpiry: "12 ноября 2026",
-    hasPhoto: true,
-    recommendation: "Рекомендую маску Olaplex раз в 2 недели для поддержания цвета",
-    rated: false,
+    client: "Анна Петрова", service: "Балаяж + стрижка", master: "Анастасия Романова",
+    masterAvatar: MASTER1, workPhoto: WORK1,
+    date: "12 мая 2026", time: "14:00", price: 8500, points: 425,
+    pointsExpiry: "12 ноября 2026", hasPhoto: true,
+    recommendation: "Рекомендую маску Olaplex раз в 2 недели для поддержания цвета", rated: false,
   },
   {
-    client: "Маша (дочь)",
-    service: "Детская стрижка",
-    master: "Мария Смирнова",
-    date: "1 мая 2026",
-    time: "11:00",
-    price: 900,
-    points: 70,
-    pointsExpiry: "1 ноября 2026",
-    hasPhoto: false,
-    recommendation: null,
-    rated: true,
+    client: "Маша (дочь)", service: "Детская стрижка", master: "Мария Смирнова",
+    masterAvatar: MASTER2, workPhoto: WORK2,
+    date: "1 мая 2026", time: "11:00", price: 900, points: 70,
+    pointsExpiry: "1 ноября 2026", hasPhoto: false,
+    recommendation: null, rated: true,
   },
   {
-    client: "Анна Петрова",
-    service: "Маникюр классический",
-    master: "Елена Козлова",
-    date: "20 апреля 2026",
-    time: "16:30",
-    price: 1500,
-    points: 75,
-    pointsExpiry: "20 октября 2026",
-    hasPhoto: true,
-    recommendation: null,
-    rated: false,
+    client: "Анна Петрова", service: "Маникюр классический", master: "Елена Козлова",
+    masterAvatar: MASTER3, workPhoto: WORK2,
+    date: "20 апреля 2026", time: "16:30", price: 1500, points: 75,
+    pointsExpiry: "20 октября 2026", hasPhoto: true,
+    recommendation: null, rated: false,
   },
 ];
 
@@ -192,7 +177,7 @@ export default function HistoryScreen({ onNavigate }: HistoryScreenProps) {
             {/* Header */}
             <div className="p-4 pb-3">
               <div className="flex items-start gap-3">
-                <img src={MASTER_IMG} alt="Мастер" className="w-12 h-12 rounded-xl object-cover shrink-0" />
+                <img src={visit.masterAvatar} alt="Мастер" className="w-12 h-12 rounded-xl object-cover shrink-0" />
                 <div className="flex-1">
                   <div className="flex items-start justify-between">
                     <div>
@@ -219,7 +204,7 @@ export default function HistoryScreen({ onNavigate }: HistoryScreenProps) {
             {visit.hasPhoto && (
               <div className="px-4 mb-3">
                 <div className="relative rounded-xl overflow-hidden h-28">
-                  <img src={WORK_IMG} alt="Результат" className="w-full h-full object-cover" />
+                  <img src={visit.workPhoto} alt="Результат" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent flex items-center">
                     <span className="text-white font-golos text-xs font-semibold px-3">Результат работы</span>
                   </div>
