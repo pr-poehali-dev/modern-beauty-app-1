@@ -212,7 +212,7 @@ export default function CatalogScreen({ onNavigate }: CatalogScreenProps) {
               <Icon name="Sparkles" size={18} className="text-[hsl(var(--primary))] shrink-0" />
               <div className="flex-1">
                 <p className="font-golos text-sm font-semibold text-[hsl(var(--primary))]">Списать баллы</p>
-                <p className="font-golos text-xs text-[hsl(var(--text-secondary))]">Доступно 1 240 баллов (до 7%)</p>
+                <p className="font-golos text-xs text-[hsl(var(--text-secondary))]">Доступно 1 240 Б = 620 ₽ (до 7%)</p>
               </div>
               <button className="font-golos text-xs font-bold text-[hsl(var(--primary))]">Применить</button>
             </div>

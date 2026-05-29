@@ -36,7 +36,7 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
       <div className="gradient-orange rounded-2xl px-4 py-3.5 text-white orange-glow flex items-center justify-between animate-fade-in-up">
         <div>
           <p className="font-golos text-white/70 text-xs">Добрый день, Анна 👋</p>
-          <p className="font-golos font-bold text-2xl leading-none mt-0.5">1 240 Б</p>
+          <p className="font-golos font-bold text-2xl leading-none mt-0.5">1 240 Б = 620 ₽</p>
           <p className="font-golos text-white/70 text-[10px] mt-0.5">⭐ Постоянный гость · скидка 10%</p>
         </div>
         <div className="text-right flex flex-col items-end gap-1.5">

@@ -68,7 +68,7 @@ export default function LoyaltyScreen({ onNavigate }: LoyaltyScreenProps) {
               <div>
                 <p className="font-golos text-white/70 text-[10px]">Баланс бонусов</p>
                 <p className="font-golos font-bold text-3xl leading-none mt-0.5">1 240</p>
-                <p className="font-golos text-white/70 text-xs mt-0.5">= 1 240 ₽</p>
+                <p className="font-golos text-white/70 text-xs mt-0.5">= 620 ₽ <span className="text-white/50 text-[10px]">(1 Б = 0,5 ₽)</span></p>
               </div>
               <div className="text-right">
                 <div className="bg-white/20 rounded-xl px-2.5 py-1 mb-1">
@@ -175,10 +175,12 @@ export default function LoyaltyScreen({ onNavigate }: LoyaltyScreenProps) {
             <div>
               <p className="font-golos text-white/70 text-[10px]">Накоплено всего</p>
               <p className="font-golos font-bold text-2xl">1 240 Б</p>
+              <p className="font-golos text-white/60 text-[10px]">= 620 ₽</p>
             </div>
             <div className="text-right">
               <p className="font-golos text-white/70 text-[10px]">Потрачено</p>
               <p className="font-golos font-bold text-2xl">430 Б</p>
+              <p className="font-golos text-white/60 text-[10px]">= 215 ₽</p>
             </div>
           </div>
           <div className="space-y-2">
