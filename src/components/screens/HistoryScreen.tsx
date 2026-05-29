@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Icon from "@/components/ui/icon";
 import { Screen } from "@/pages/Index";
 
@@ -20,6 +21,7 @@ const history = [
     pointsExpiry: "12 ноября 2026",
     hasPhoto: true,
     recommendation: "Рекомендую маску Olaplex раз в 2 недели для поддержания цвета",
+    rated: false,
   },
   {
     client: "Маша (дочь)",
@@ -32,6 +34,7 @@ const history = [
     pointsExpiry: "1 ноября 2026",
     hasPhoto: false,
     recommendation: null,
+    rated: true,
   },
   {
     client: "Анна Петрова",
@@ -44,24 +47,147 @@ const history = [
     pointsExpiry: "20 октября 2026",
     hasPhoto: true,
     recommendation: null,
+    rated: false,
   },
 ];
 
+type ReviewState = { visitIndex: number; stars: number; text: string; withPhoto: boolean } | null;
+
 export default function HistoryScreen({ onNavigate }: HistoryScreenProps) {
+  const [review, setReview] = useState<ReviewState>(null);
+  const [submitted, setSubmitted] = useState<number[]>([]);
+  const [filter, setFilter] = useState<"all" | "self" | "family">("all");
+
+  const filtered = history.filter(v => {
+    if (filter === "self") return v.client === "Анна Петрова";
+    if (filter === "family") return v.client !== "Анна Петрова";
+    return true;
+  });
+
+  if (review !== null) {
+    return (
+      <div className="px-5 pt-2 pb-4 animate-slide-in-right">
+        <button onClick={() => setReview(null)} className="flex items-center gap-1 font-golos text-sm text-[hsl(var(--text-secondary))] mb-4">
+          <Icon name="ChevronLeft" size={18} /> Назад
+        </button>
+        <h2 className="font-golos font-bold text-xl text-[hsl(var(--text-main))] mb-1">Оставить отзыв</h2>
+        <p className="font-golos text-sm text-[hsl(var(--text-secondary))] mb-5">
+          {history[review.visitIndex].service} · {history[review.visitIndex].master}
+        </p>
+
+        {/* Stars */}
+        <div className="bg-white border border-[hsl(var(--border))] rounded-2xl p-5 card-shadow mb-4">
+          <p className="font-golos font-semibold text-[hsl(var(--text-main))] mb-4 text-center">Ваша оценка</p>
+          <div className="flex justify-center gap-3 mb-2">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <button
+                key={star}
+                onClick={() => setReview({ ...review, stars: star })}
+                className="transition-all active:scale-90"
+              >
+                <Icon
+                  name="Star"
+                  size={36}
+                  className={star <= review.stars ? "text-yellow-400 fill-yellow-400" : "text-[hsl(var(--border))]"}
+                />
+              </button>
+            ))}
+          </div>
+          <p className="font-golos text-center text-sm font-medium text-[hsl(var(--text-secondary))]">
+            {review.stars === 0 && "Нажмите на звезду"}
+            {review.stars === 1 && "Плохо"}
+            {review.stars === 2 && "Ниже ожиданий"}
+            {review.stars === 3 && "Нормально"}
+            {review.stars === 4 && "Хорошо"}
+            {review.stars === 5 && "Отлично! ⭐"}
+          </p>
+        </div>
+
+        {/* Text */}
+        <div className="mb-4">
+          <label className="font-golos text-sm font-semibold text-[hsl(var(--text-main))] mb-2 block">Комментарий</label>
+          <textarea
+            value={review.text}
+            onChange={(e) => setReview({ ...review, text: e.target.value })}
+            placeholder="Поделитесь впечатлениями о визите..."
+            rows={4}
+            className="w-full px-4 py-3 bg-[hsl(var(--gray-soft))] rounded-2xl font-golos text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[hsl(var(--primary))]/30"
+          />
+        </div>
+
+        {/* Photo option */}
+        <button
+          onClick={() => setReview({ ...review, withPhoto: !review.withPhoto })}
+          className={`w-full py-3 rounded-2xl border-2 flex items-center gap-3 px-4 mb-5 transition-all ${
+            review.withPhoto
+              ? "border-[hsl(var(--primary))] bg-[hsl(var(--orange-light))]"
+              : "border-[hsl(var(--border))] bg-white"
+          }`}
+        >
+          <Icon name="Camera" size={18} className={review.withPhoto ? "text-[hsl(var(--primary))]" : "text-[hsl(var(--text-secondary))]"} />
+          <div className="text-left flex-1">
+            <p className={`font-golos text-sm font-medium ${review.withPhoto ? "text-[hsl(var(--primary))]" : "text-[hsl(var(--text-main))]"}`}>
+              Добавить фото результата
+            </p>
+            <p className="font-golos text-xs text-[hsl(var(--text-secondary))]">За фото-отзыв начисляется +50 баллов</p>
+          </div>
+          {review.withPhoto && <Icon name="Check" size={18} className="text-[hsl(var(--primary))]" />}
+        </button>
+
+        {/* Bonus info */}
+        <div className="bg-[hsl(var(--orange-light))] rounded-2xl p-3.5 flex items-center gap-2 mb-5">
+          <Icon name="Sparkles" size={16} className="text-[hsl(var(--primary))]" />
+          <p className="font-golos text-sm text-[hsl(var(--primary))]">
+            За отзыв: <span className="font-bold">{review.withPhoto ? "+50 баллов" : "+30 баллов"}</span>
+          </p>
+        </div>
+
+        <button
+          onClick={() => {
+            setSubmitted(prev => [...prev, review.visitIndex]);
+            setReview(null);
+          }}
+          disabled={review.stars === 0}
+          className="w-full py-4 gradient-orange text-white font-golos font-semibold rounded-2xl orange-glow disabled:opacity-50"
+        >
+          Отправить отзыв
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="px-5 pt-2 pb-4 animate-fade-in">
-      <div className="flex items-center justify-between mb-5">
+      <div className="flex items-center justify-between mb-4">
         <div>
           <h2 className="font-golos font-bold text-xl text-[hsl(var(--text-main))]">История визитов</h2>
           <p className="font-golos text-xs text-[hsl(var(--text-secondary))]">Вы и члены семьи</p>
         </div>
-        <button className="w-9 h-9 bg-[hsl(var(--gray-soft))] rounded-xl flex items-center justify-center">
-          <Icon name="Filter" size={16} className="text-[hsl(var(--text-secondary))]" />
-        </button>
+      </div>
+
+      {/* Filter */}
+      <div className="flex gap-2 mb-4">
+        {[
+          { key: "all", label: "Все" },
+          { key: "self", label: "Я" },
+          { key: "family", label: "Семья" },
+        ].map(({ key, label }) => (
+          <button
+            key={key}
+            onClick={() => setFilter(key as typeof filter)}
+            className={`px-4 py-2 rounded-xl font-golos text-sm font-medium transition-all ${
+              filter === key
+                ? "gradient-orange text-white"
+                : "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-secondary))]"
+            }`}
+          >
+            {label}
+          </button>
+        ))}
       </div>
 
       <div className="space-y-4">
-        {history.map((visit, i) => (
+        {filtered.map((visit, i) => (
           <div key={i} className="bg-white border border-[hsl(var(--border))] rounded-2xl overflow-hidden card-shadow animate-fade-in-up" style={{ animationDelay: `${i * 0.1}s` }}>
             {/* Header */}
             <div className="p-4 pb-3">
@@ -130,9 +256,19 @@ export default function HistoryScreen({ onNavigate }: HistoryScreenProps) {
               >
                 Повторить
               </button>
-              <button className="flex-1 py-2.5 bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))] font-golos font-medium text-sm rounded-xl">
-                Оценить
-              </button>
+              {submitted.includes(i) || visit.rated ? (
+                <div className="flex-1 py-2.5 bg-[hsl(var(--orange-light))] text-[hsl(var(--primary))] font-golos font-medium text-sm rounded-xl flex items-center justify-center gap-1">
+                  <Icon name="Star" size={13} className="fill-[hsl(var(--primary))]" />
+                  Оценено
+                </div>
+              ) : (
+                <button
+                  onClick={() => setReview({ visitIndex: history.indexOf(visit), stars: 0, text: "", withPhoto: false })}
+                  className="flex-1 py-2.5 bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))] font-golos font-medium text-sm rounded-xl"
+                >
+                  Оценить
+                </button>
+              )}
               <button
                 onClick={() => onNavigate("catalog")}
                 className="flex-1 py-2.5 bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))] font-golos font-medium text-sm rounded-xl"

@@ -21,6 +21,9 @@ const quickActions = [
   { icon: "Star", label: "Мои баллы", screen: "loyalty" as Screen, color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
   { icon: "Clock", label: "История", screen: "history" as Screen, color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
   { icon: "ShoppingBag", label: "Каталог", screen: "catalog" as Screen, color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
+  { icon: "MessageCircle", label: "Чат", screen: "chat" as Screen, color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
+  { icon: "Scissors", label: "Мастера", screen: "masters" as Screen, color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
+  { icon: "X", label: "Отменить запись", screen: "booking" as Screen, color: "bg-red-50 text-red-400" },
 ];
 
 export default function HomeScreen({ onNavigate }: HomeScreenProps) {
@@ -75,6 +78,17 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
           </div>
           <button className="w-9 h-9 bg-[hsl(var(--orange-light))] rounded-xl flex items-center justify-center">
             <Icon name="ChevronRight" size={18} className="text-[hsl(var(--primary))]" />
+          </button>
+        </div>
+        <div className="flex gap-2 mt-3 pt-3 border-t border-[hsl(var(--border))]">
+          <button
+            onClick={() => onNavigate("booking")}
+            className="flex-1 py-2 gradient-orange text-white font-golos font-medium text-xs rounded-xl"
+          >
+            Перенести
+          </button>
+          <button className="flex-1 py-2 bg-red-50 text-red-400 font-golos font-medium text-xs rounded-xl border border-red-100">
+            Отменить
           </button>
         </div>
       </div>

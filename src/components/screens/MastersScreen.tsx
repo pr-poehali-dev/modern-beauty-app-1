@@ -56,8 +56,11 @@ const masters = [
   },
 ];
 
+const specialtyFilters = ["Все", "Стрижки", "Окрашивание", "Маникюр", "Брови", "Укладки"];
+
 export default function MastersScreen({ onNavigate }: MastersScreenProps) {
   const [selected, setSelected] = useState<typeof masters[0] | null>(null);
+  const [filter, setFilter] = useState("Все");
 
   if (selected) {
     return (
@@ -159,18 +162,40 @@ export default function MastersScreen({ onNavigate }: MastersScreenProps) {
     );
   }
 
+  const filteredMasters = filter === "Все"
+    ? masters
+    : masters.filter(m => m.specialties.some(s => s.toLowerCase().includes(filter.toLowerCase())));
+
   return (
     <div className="px-5 pt-2 pb-4 animate-fade-in">
-      <div className="flex items-center justify-between mb-5">
+      <div className="flex items-center justify-between mb-4">
         <div>
           <h2 className="font-golos font-bold text-xl text-[hsl(var(--text-main))]">Наши мастера</h2>
-          <p className="font-golos text-xs text-[hsl(var(--text-secondary))]">{masters.length} специалиста</p>
+          <p className="font-golos text-xs text-[hsl(var(--text-secondary))]">{filteredMasters.length} специалист{filteredMasters.length !== 1 ? "а" : ""}</p>
         </div>
       </div>
-      <div className="space-y-3">
-        {masters.map((master, i) => (
+
+      {/* Specialty filter */}
+      <div className="flex gap-2 overflow-x-auto scrollbar-hide -mx-5 px-5 mb-4">
+        {specialtyFilters.map((f) => (
           <button
-            key={i}
+            key={f}
+            onClick={() => setFilter(f)}
+            className={`px-3.5 py-2 rounded-xl whitespace-nowrap font-golos text-sm font-medium transition-all shrink-0 ${
+              filter === f
+                ? "gradient-orange text-white"
+                : "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-secondary))]"
+            }`}
+          >
+            {f}
+          </button>
+        ))}
+      </div>
+
+      <div className="space-y-3">
+        {filteredMasters.map((master, i) => (
+          <button
+            key={master.name}
             onClick={() => setSelected(master)}
             className="w-full bg-white border border-[hsl(var(--border))] rounded-2xl p-4 flex items-center gap-3 card-shadow text-left animate-fade-in-up transition-all active:scale-98"
             style={{ animationDelay: `${i * 0.1}s` }}
