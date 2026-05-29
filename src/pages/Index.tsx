@@ -53,55 +53,55 @@ export default function Index() {
       <div className="w-full max-w-[430px] min-h-screen bg-[hsl(var(--gray-soft))] relative flex flex-col overflow-hidden shadow-2xl">
 
         {/* Header */}
-        <header className="flex items-center justify-between px-5 pt-12 pb-3 bg-[hsl(var(--gray-soft))] z-20 sticky top-0">
+        <header className="flex items-center justify-between px-4 pt-12 pb-3 bg-[hsl(var(--gray-soft))] z-20 sticky top-0">
           <button
-            onClick={() => setActiveScreen("salon")}
-            className="flex items-center gap-2"
+            onClick={() => setActiveScreen(activeScreen === "salon" ? "home" : "salon")}
+            className="flex items-center gap-2.5"
           >
-            <div className="w-8 h-8 gradient-orange rounded-xl flex items-center justify-center">
-              <span className="text-white text-sm font-bold font-golos">М</span>
+            <div className="w-10 h-10 gradient-orange rounded-2xl flex items-center justify-center orange-glow">
+              <span className="text-white text-base font-bold font-golos">М</span>
             </div>
             <div>
               <span className="font-golos font-bold text-lg text-[hsl(var(--text-main))] leading-none block">
                 {activeScreen === "salon" ? "О салоне" : "Модерн"}
               </span>
-              {activeScreen !== "salon" && (
-                <span className="font-golos text-[10px] text-[hsl(var(--text-secondary))] leading-none">О салоне →</span>
-              )}
+              <span className="font-golos text-[10px] text-[hsl(var(--text-secondary))] leading-none">
+                {activeScreen === "salon" ? "← назад" : "О салоне →"}
+              </span>
             </div>
           </button>
           <div className="flex items-center gap-2">
             {/* Кнопка оплаты */}
             <button
               onClick={() => setActiveScreen("payment")}
-              className="relative w-9 h-9 rounded-xl bg-[hsl(var(--orange-light))] flex items-center justify-center transition-all active:scale-95"
+              className="relative w-11 h-11 rounded-2xl bg-[hsl(var(--orange-light))] border border-[hsl(var(--primary))]/20 flex items-center justify-center transition-all active:scale-95"
             >
-              <Icon name="CreditCard" size={17} className="text-[hsl(var(--primary))]" />
+              <Icon name="CreditCard" size={20} className="text-[hsl(var(--primary))]" />
               {showPaymentBadge && (
-                <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white" />
+                <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-red-500 rounded-full border-2 border-[hsl(var(--gray-soft))]" />
               )}
             </button>
             {/* Мои записи */}
             <button
               onClick={() => setActiveScreen("my-bookings")}
-              className="w-9 h-9 rounded-xl bg-white/60 flex items-center justify-center transition-all active:scale-95 relative"
+              className="w-11 h-11 rounded-2xl bg-white border border-[hsl(var(--border))] flex items-center justify-center transition-all active:scale-95 relative shadow-sm"
             >
-              <Icon name="CalendarDays" size={17} className="text-[hsl(var(--text-secondary))]" />
+              <Icon name="CalendarDays" size={20} className="text-[hsl(var(--text-secondary))]" />
               <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[hsl(var(--primary))] rounded-full text-white text-[9px] font-bold flex items-center justify-center">3</span>
             </button>
             {/* Чат */}
             <button
               onClick={() => setActiveScreen("chat")}
-              className="w-9 h-9 rounded-xl bg-white/60 flex items-center justify-center transition-all active:scale-95 relative"
+              className="w-11 h-11 rounded-2xl bg-white border border-[hsl(var(--border))] flex items-center justify-center transition-all active:scale-95 relative shadow-sm"
             >
-              <Icon name="MessageCircle" size={17} className="text-[hsl(var(--text-secondary))]" />
-              <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-[hsl(var(--primary))] rounded-full border-2 border-[hsl(var(--gray-soft))]" />
+              <Icon name="MessageCircle" size={20} className="text-[hsl(var(--text-secondary))]" />
+              <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-[hsl(var(--primary))] rounded-full border-2 border-[hsl(var(--gray-soft))]" />
             </button>
           </div>
         </header>
 
         {/* Main content */}
-        <main className="flex-1 overflow-y-auto scrollbar-hide pb-24">
+        <main className="flex-1 overflow-y-auto scrollbar-hide pb-28">
           {renderScreen()}
         </main>
 

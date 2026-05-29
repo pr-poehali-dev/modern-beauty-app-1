@@ -18,13 +18,13 @@ const promos = [
 const quickActions = [
   { icon: "CalendarPlus",  label: "Онлайн-запись",   screen: "booking" as Screen,      color: "gradient-orange text-white orange-glow" },
   { icon: "Users",         label: "Семейная запись",  screen: "booking" as Screen,      color: "bg-[hsl(var(--orange-light))] text-[hsl(var(--primary))]" },
-  { icon: "CalendarDays",  label: "Мои записи",       screen: "my-bookings" as Screen,  color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
-  { icon: "Star",          label: "Мои баллы",        screen: "loyalty" as Screen,      color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
-  { icon: "Clock",         label: "История",          screen: "history" as Screen,      color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
-  { icon: "ShoppingBag",   label: "Каталог",          screen: "catalog" as Screen,      color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
-  { icon: "MessageCircle", label: "Чат",              screen: "chat" as Screen,         color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
-  { icon: "CreditCard",    label: "Оплата",           screen: "payment" as Screen,      color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
-  { icon: "Scissors",      label: "Мастера",          screen: "masters" as Screen,      color: "bg-[hsl(var(--gray-soft))] text-[hsl(var(--text-main))]" },
+  { icon: "CalendarDays",  label: "Мои записи",       screen: "my-bookings" as Screen,  color: "bg-[hsl(var(--card))] text-[hsl(var(--text-main))] border border-[hsl(var(--border))] shadow-sm" },
+  { icon: "Star",          label: "Мои баллы",        screen: "loyalty" as Screen,      color: "bg-[hsl(var(--card))] text-[hsl(var(--text-main))] border border-[hsl(var(--border))] shadow-sm" },
+  { icon: "Clock",         label: "История",          screen: "history" as Screen,      color: "bg-[hsl(var(--card))] text-[hsl(var(--text-main))] border border-[hsl(var(--border))] shadow-sm" },
+  { icon: "ShoppingBag",   label: "Каталог",          screen: "catalog" as Screen,      color: "bg-[hsl(var(--card))] text-[hsl(var(--text-main))] border border-[hsl(var(--border))] shadow-sm" },
+  { icon: "MessageCircle", label: "Чат",              screen: "chat" as Screen,         color: "bg-[hsl(var(--card))] text-[hsl(var(--text-main))] border border-[hsl(var(--border))] shadow-sm" },
+  { icon: "CreditCard",    label: "Оплата",           screen: "payment" as Screen,      color: "bg-[hsl(var(--card))] text-[hsl(var(--text-main))] border border-[hsl(var(--border))] shadow-sm" },
+  { icon: "Scissors",      label: "Мастера",          screen: "masters" as Screen,      color: "bg-[hsl(var(--card))] text-[hsl(var(--text-main))] border border-[hsl(var(--border))] shadow-sm" },
 ];
 
 export default function HomeScreen({ onNavigate }: HomeScreenProps) {
@@ -60,7 +60,7 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
       </div>
 
       {/* Nearest booking */}
-      <div className="bg-white border-2 border-[hsl(var(--border))] rounded-3xl p-4 card-shadow animate-fade-in-up delay-200">
+      <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-3xl p-4 shadow-sm animate-fade-in-up delay-200">
         <div className="flex items-center gap-2 mb-3">
           <div className="w-6 h-6 bg-[hsl(var(--orange-light))] rounded-lg flex items-center justify-center">
             <Icon name="Calendar" size={14} className="text-[hsl(var(--primary))]" />
@@ -114,7 +114,7 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
       {/* Master recommendation */}
       <div className="animate-fade-in-up delay-300">
         <p className="font-golos font-semibold text-[hsl(var(--text-main))] mb-3">Рекомендация мастера</p>
-        <div className="bg-[hsl(var(--gray-soft))] rounded-3xl p-4 flex gap-3">
+        <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-3xl p-4 flex gap-3 shadow-sm">
           <img src={MASTER1} alt="Мастер" className="w-12 h-12 rounded-2xl object-cover shrink-0" />
           <div>
             <p className="font-golos font-semibold text-sm text-[hsl(var(--text-main))]">Анастасия Романова</p>

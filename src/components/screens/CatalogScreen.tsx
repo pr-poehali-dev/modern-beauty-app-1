@@ -6,32 +6,38 @@ interface CatalogScreenProps {
   onNavigate: (screen: Screen) => void;
 }
 
-const IMG_SHAMPOO    = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/2f6d37da-361e-4c0d-969f-1e6260de7c1a.jpg";
-const IMG_MASK       = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/c3137b70-76ac-47cd-9c6a-b23e69a6dea2.jpg";
-const IMG_SPRAY      = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/4b3b269f-f535-4871-a4b2-ffac3046fcc4.jpg";
-const IMG_OIL        = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/20abd534-42a8-4157-aef8-1095af75d14a.jpg";
-const IMG_CONDITIONER= "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/cb9e0266-a2ac-4c5d-8f13-de672af9eee8.jpg";
-const MASTER_IMG     = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/e3ed684a-5b91-442d-bbef-325e47bc1166.jpg";
+// Уникальные фото для каждого товара
+const P_OLAPLEX_SHAMPOO  = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/322cc973-632a-4484-b347-ad03a58cb0c2.jpg";
+const P_KERA_MASK        = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/2e767ef5-6604-49c8-810d-68ec78bbfe20.jpg";
+const P_SCHWK_SPRAY      = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/e7a499d2-7b90-4da9-8b33-a7ba6d9e6741.jpg";
+const P_REDKEN_SHAMPOO   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/dcca5c47-d542-4cbd-bb21-82b9dfc38ac4.jpg";
+const P_OLAPLEX_MASK     = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/74e93020-7d6e-445f-9409-bf6d6ce0c3c9.jpg";
+const P_KERA_SPRAY       = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/bce54c67-2de5-4fc7-a3a0-351ceb9ef1e2.jpg";
+const P_LOREAL_SHAMPOO   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/69706f54-d9e5-471e-971b-148075ce6381.jpg";
+const P_WELLA_MASK       = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/5fec2447-97bf-4a06-bc1a-d732d292b2ed.jpg";
+const P_MOROCCO_OIL      = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/8381617b-af3d-490e-8e53-06fe190a8721.jpg";
+const MASTER_IMG         = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/e3ed684a-5b91-442d-bbef-325e47bc1166.jpg";
 
 const categories = [
   { id: "all",     label: "Все",          icon: "✨" },
   { id: "shampoo", label: "Шампуни",      icon: "🧴" },
   { id: "mask",    label: "Маски",        icon: "🫙" },
   { id: "cond",    label: "Кондиционеры", icon: "💧" },
-  { id: "spray",   label: "Спреи",        icon: "🌿" },
-  { id: "oil",     label: "Масла",        icon: "✨" },
+  { id: "spray",   label: "Спреи",        icon: "💨" },
+  { id: "oil",     label: "Масла",        icon: "🌿" },
   { id: "color",   label: "Для окраш.",   icon: "🎨" },
 ];
 
 const products = [
-  { id: 1, name: "Шампунь восстанавливающий Olaplex No.4", brand: "Olaplex", price: 2890, bonus: 145, category: "shampoo", inStock: true,  recommended: true,  img: IMG_SHAMPOO,     desc: "Восстанавливает повреждённые связи волоса, подходит для всех типов, особенно окрашенных.",        masterTip: "Рекомендую использовать раз в неделю для поддержания блеска" },
-  { id: 2, name: "Питательная маска Kerastase Nutritive",  brand: "Kerastase", price: 3200, bonus: 160, category: "mask",    inStock: true,  recommended: true,  img: IMG_MASK,        desc: "Интенсивное питание и восстановление для сухих и повреждённых волос.",                           masterTip: "Нанесите на 10–15 минут после шампуня, смойте тёплой водой" },
-  { id: 3, name: "Кондиционер Redken All Soft",            brand: "Redken",    price: 1650, bonus: 83,  category: "cond",    inStock: true,  recommended: false, img: IMG_CONDITIONER, desc: "Увлажняет и разглаживает волосы, облегчает расчёсывание.",                                        masterTip: null },
-  { id: 4, name: "Термозащитный спрей Schwarzkopf",        brand: "Schwarzkopf", price: 980, bonus: 49, category: "spray",  inStock: false, recommended: false, img: IMG_SPRAY,       desc: "Защита до 230°C, придаёт блеск, облегчает укладку.",                                             masterTip: "Наносите перед феном или утюжком на влажные волосы" },
-  { id: 5, name: "Аргановое масло L'Oreal Mythic",         brand: "L'Oreal",   price: 2100, bonus: 105, category: "oil",    inStock: true,  recommended: false, img: IMG_OIL,         desc: "Придаёт невероятный блеск, устраняет пушистость, питает кончики.",                                masterTip: "2–3 капли на сухие волосы — идеальный финиш укладки" },
-  { id: 6, name: "Маска для окрашенных Olaplex No.8",      brand: "Olaplex",   price: 3500, bonus: 175, category: "color",  inStock: true,  recommended: true,  img: IMG_MASK,        desc: "Специально для окрашенных волос — сохраняет цвет, восстанавливает структуру.",                   masterTip: "Используйте после каждого окрашивания для поддержания цвета" },
-  { id: 7, name: "Спрей-кондиционер Kerastase Elixir",     brand: "Kerastase", price: 2400, bonus: 120, category: "spray",  inStock: true,  recommended: false, img: IMG_SPRAY,       desc: "Несмываемый уход, питание и защита для ослабленных волос.",                                       masterTip: null },
-  { id: 8, name: "Масло-блеск Redken Diamond Oil",         brand: "Redken",    price: 1900, bonus: 95,  category: "oil",    inStock: true,  recommended: false, img: IMG_OIL,         desc: "Лёгкое масло для невероятного блеска и гладкости без утяжеления.",                               masterTip: null },
+  { id: 1, name: "Шампунь Olaplex No.4 Bond",        brand: "Olaplex",     price: 2890, bonus: 145, category: "shampoo", inStock: true,  recommended: true,  img: P_OLAPLEX_SHAMPOO, desc: "Восстанавливает повреждённые связи волоса, подходит для всех типов, особенно окрашенных.", masterTip: "Рекомендую использовать раз в неделю для поддержания блеска" },
+  { id: 2, name: "Маска Kerastase Nutritive",         brand: "Kerastase",   price: 3200, bonus: 160, category: "mask",    inStock: true,  recommended: true,  img: P_KERA_MASK,        desc: "Интенсивное питание и восстановление для сухих и повреждённых волос.",                  masterTip: "Нанесите на 10–15 минут после шампуня, смойте тёплой водой" },
+  { id: 3, name: "Спрей термозащитный Schwarzkopf",  brand: "Schwarzkopf", price: 980,  bonus: 49,  category: "spray",   inStock: true,  recommended: false, img: P_SCHWK_SPRAY,      desc: "Защита до 230°C, придаёт блеск, облегчает укладку.",                                   masterTip: "Наносите перед феном или утюжком на влажные волосы" },
+  { id: 4, name: "Шампунь Redken All Soft",           brand: "Redken",      price: 1650, bonus: 83,  category: "shampoo", inStock: true,  recommended: false, img: P_REDKEN_SHAMPOO,   desc: "Увлажняет и смягчает сухие, ломкие волосы, придаёт мягкость и блеск.",                 masterTip: null },
+  { id: 5, name: "Маска Olaplex No.8 Bond Intense",  brand: "Olaplex",     price: 3500, bonus: 175, category: "mask",    inStock: true,  recommended: true,  img: P_OLAPLEX_MASK,     desc: "Специально для окрашенных волос — сохраняет цвет, восстанавливает структуру.",         masterTip: "Используйте после каждого окрашивания для поддержания цвета" },
+  { id: 6, name: "Спрей-сыворотка Kerastase Elixir", brand: "Kerastase",   price: 2400, bonus: 120, category: "spray",   inStock: true,  recommended: false, img: P_KERA_SPRAY,       desc: "Несмываемый уход, питание и защита для ослабленных волос.",                            masterTip: null },
+  { id: 7, name: "Шампунь L'Oreal Absolut Repair",   brand: "L'Oreal",     price: 1490, bonus: 75,  category: "shampoo", inStock: true,  recommended: false, img: P_LOREAL_SHAMPOO,   desc: "Восстанавливающий шампунь для сильно повреждённых волос.",                              masterTip: null },
+  { id: 8, name: "Маска Wella Color Brilliance",      brand: "Wella",       price: 1890, bonus: 95,  category: "mask",    inStock: false, recommended: false, img: P_WELLA_MASK,       desc: "Защищает яркость цвета, придаёт блеск окрашенным волосам.",                            masterTip: null },
+  { id: 9, name: "Масло Moroccanoil Treatment",       brand: "Moroccanoil", price: 2600, bonus: 130, category: "oil",     inStock: true,  recommended: true,  img: P_MOROCCO_OIL,      desc: "Аргановое масло для невероятного блеска, гладкости и питания.",                        masterTip: "2–3 капли на сухие волосы — идеальный финиш укладки" },
 ];
 
 type Product = typeof products[0];
