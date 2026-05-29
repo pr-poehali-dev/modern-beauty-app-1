@@ -123,55 +123,44 @@ export default function ChatScreen({ onNavigate }: ChatScreenProps) {
   if (!activeDialog) {
     const totalUnread = dialogs.reduce((s, d) => s + d.unread, 0);
     return (
-      <div className="px-5 pt-2 pb-4 animate-fade-in">
-        <div className="flex items-center justify-between mb-4">
+      <div className="flex flex-col h-full px-4 pt-1 pb-2 gap-2.5 animate-fade-in">
+        {/* Header */}
+        <div className="flex items-center justify-between shrink-0">
           <div>
-            <h2 className="font-golos font-bold text-xl text-[hsl(var(--text-main))]">Сообщения</h2>
-            <p className="font-golos text-xs text-[hsl(var(--text-secondary))]">Чат с мастерами и администратором</p>
+            <h2 className="font-golos font-bold text-lg text-[hsl(var(--text-main))]">Сообщения</h2>
+            <p className="font-golos text-[10px] text-[hsl(var(--text-secondary))]">Чат с мастерами и администратором</p>
           </div>
           {totalUnread > 0 && (
-            <span className="gradient-orange text-white text-xs font-bold px-3 py-1 rounded-xl">
-              {totalUnread} новых
-            </span>
+            <span className="gradient-orange text-white text-xs font-bold px-3 py-1 rounded-xl">{totalUnread} новых</span>
           )}
         </div>
 
-        <div className="relative mb-4">
-          <Icon name="Search" size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[hsl(var(--text-secondary))]" />
-          <input type="text" placeholder="Поиск по мастерам..." className="w-full pl-10 pr-4 py-3 bg-[hsl(var(--gray-soft))] rounded-xl font-golos text-sm focus:outline-none" />
+        {/* Search */}
+        <div className="relative shrink-0">
+          <Icon name="Search" size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-[hsl(var(--text-secondary))]" />
+          <input type="text" placeholder="Поиск…" className="w-full pl-9 pr-4 py-2.5 bg-white border border-[hsl(var(--border))] rounded-xl font-golos text-sm focus:outline-none shadow-sm" />
         </div>
 
-        {/* Push-уведомления */}
-        <div className="bg-[hsl(var(--orange-light))] border border-[hsl(var(--primary))]/20 rounded-2xl p-3.5 mb-4">
-          <p className="font-golos text-xs font-semibold text-[hsl(var(--primary))] mb-2 flex items-center gap-1.5">
-            <Icon name="Bell" size={13} /> Push-уведомления включены
-          </p>
-          <div className="space-y-1">
-            {[
-              "⏰ Напоминание за 1 день и за 1 час до записи",
-              "✨ Начисление и сгорание баллов",
-              "🎁 Акции и персональные предложения",
-            ].map(t => (
-              <p key={t} className="font-golos text-xs text-[hsl(var(--text-secondary))]">{t}</p>
-            ))}
-          </div>
+        {/* Push pill */}
+        <div className="flex items-center gap-2 bg-[hsl(var(--orange-light))] border border-[hsl(var(--primary))]/15 rounded-2xl px-3.5 py-2.5 shrink-0">
+          <Icon name="Bell" size={14} className="text-[hsl(var(--primary))] shrink-0" />
+          <p className="font-golos text-xs font-semibold text-[hsl(var(--primary))]">Push включены: напоминания, баллы, ответы, акции</p>
         </div>
 
-        <div className="space-y-2">
-          {/* Сортируем: сначала с непрочитанными */}
+        {/* Dialog list */}
+        <div className="flex-1 overflow-y-auto scrollbar-hide min-h-0 space-y-2">
           {[...dialogs].sort((a, b) => b.unread - a.unread).map((dialog) => (
             <button key={dialog.id} onClick={() => setActiveDialog(dialog)}
-              className="w-full bg-white border border-[hsl(var(--border))] rounded-2xl p-4 flex items-center gap-3 card-shadow text-left transition-all active:scale-98">
+              className="w-full bg-white border border-[hsl(var(--border))] rounded-2xl p-3 flex items-center gap-3 shadow-sm text-left transition-all active:scale-98">
               <div className="relative shrink-0">
-                <img src={dialog.avatar} alt={dialog.name} className="w-14 h-14 rounded-2xl object-cover" />
-                <span className={`absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-white ${dialog.online ? "bg-green-400" : "bg-gray-300"}`} />
+                <img src={dialog.avatar} alt={dialog.name} className="w-12 h-12 rounded-2xl object-cover" />
+                <span className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-white ${dialog.online ? "bg-green-400" : "bg-gray-300"}`} />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="flex items-start justify-between mb-0.5">
-                  <p className={`font-golos font-semibold text-sm ${dialog.unread > 0 ? "text-[hsl(var(--text-main))]" : "text-[hsl(var(--text-main))]"}`}>{dialog.name}</p>
-                  <span className="font-golos text-[10px] text-[hsl(var(--text-secondary))] shrink-0 ml-2">{dialog.lastTime}</span>
+                <div className="flex items-center justify-between mb-0.5">
+                  <p className="font-golos font-semibold text-sm text-[hsl(var(--text-main))] truncate flex-1 pr-2">{dialog.name}</p>
+                  <span className="font-golos text-[10px] text-[hsl(var(--text-secondary))] shrink-0">{dialog.lastTime}</span>
                 </div>
-                <p className="font-golos text-xs text-[hsl(var(--text-secondary))] mb-0.5">{dialog.role}</p>
                 <p className={`font-golos text-xs truncate ${dialog.unread > 0 ? "font-medium text-[hsl(var(--text-main))]" : "text-[hsl(var(--text-secondary))]"}`}>{dialog.lastMessage}</p>
               </div>
               {dialog.unread > 0 && (
@@ -179,19 +168,20 @@ export default function ChatScreen({ onNavigate }: ChatScreenProps) {
               )}
             </button>
           ))}
-        </div>
 
-        <button onClick={() => onNavigate("masters")} className="w-full mt-4 py-3.5 border-2 border-dashed border-[hsl(var(--border))] rounded-2xl flex items-center justify-center gap-2 font-golos text-sm text-[hsl(var(--text-secondary))]">
-          <Icon name="Plus" size={16} />
-          Написать другому мастеру
-        </button>
+          <button onClick={() => onNavigate("masters")}
+            className="w-full py-3 border-2 border-dashed border-[hsl(var(--border))] rounded-2xl flex items-center justify-center gap-2 font-golos text-sm text-[hsl(var(--text-secondary))]">
+            <Icon name="Plus" size={15} />
+            Написать другому мастеру
+          </button>
+        </div>
       </div>
     );
   }
 
   /* ── CHAT VIEW ── */
   return (
-    <div className="flex flex-col h-[calc(100vh-180px)] animate-fade-in">
+    <div className="flex flex-col h-full animate-fade-in">
       {/* Header */}
       <div className="px-5 pb-3 border-b border-[hsl(var(--border))]">
         <div className="flex items-center gap-3">

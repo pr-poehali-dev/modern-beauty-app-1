@@ -101,8 +101,10 @@ export default function Index() {
         </header>
 
         {/* Main content */}
-        <main className="flex-1 overflow-y-auto scrollbar-hide pb-28">
-          {renderScreen()}
+        <main className="flex-1 overflow-hidden pb-28 flex flex-col">
+          <div className="flex-1 h-full overflow-y-auto scrollbar-hide">
+            {renderScreen()}
+          </div>
         </main>
 
         {/* Bottom Nav */}
