@@ -68,7 +68,7 @@ export default function BookingScreen({ onNavigate }: BookingScreenProps) {
     : servicesList.filter(s => s.category === serviceCat);
 
   const totalBonus = selectedService ? selectedService.bonus : 0;
-  const bonusDiscount = useBonus && selectedService ? Math.floor(selectedService.price * 0.07) : 0;
+  const bonusDiscount = useBonus && selectedService ? Math.floor(selectedService.price * 0.10) : 0;
 
   /* ── CONFIRMED ── */
   if (confirmed) {
@@ -267,9 +267,9 @@ export default function BookingScreen({ onNavigate }: BookingScreenProps) {
             </div>
             <div className="flex-1 text-left">
               <p className={`font-golos text-xs font-semibold ${useBonus ? "text-[hsl(var(--primary))]" : "text-[hsl(var(--text-main))]"}`}>
-                Списать баллы — доступно 1 240 Б = 620 ₽
+                Списать баллы — доступно 1 240 Б = 1 240 ₽
               </p>
-              <p className="font-golos text-[10px] text-[hsl(var(--text-secondary))]">Скидка до 7% = {bonusDiscount} ₽</p>
+              <p className="font-golos text-[10px] text-[hsl(var(--text-secondary))]">Скидка до 10% = {bonusDiscount} ₽</p>
             </div>
           </button>
           {bonusDiscount > 0 && (
