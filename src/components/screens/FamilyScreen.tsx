@@ -59,7 +59,7 @@ const members = [
     preferredTime: "Выходные, 10:00–12:00",
     hairType: "Густые, вьющиеся, тёмные",
     allergies: null,
-    notes: "Любит короткие стрижки. Не любит фен — лучше укладывать вручную",
+    notes: "Любит короткие стрижки. Боится машинки — стричь только ножницами. Не любит фен — лучше укладывать вручную",
     lastVisit: "1 мая 2026",
     lastService: "Детская стрижка",
     nextVisit: null,
@@ -145,8 +145,8 @@ export default function FamilyScreen({ onNavigate, onBack }: FamilyScreenProps) 
           <div className="grid grid-cols-4 gap-2">
             {[
               { label: "Визитов",   value: String(m.totalVisits) },
-              { label: "Потрачено", value: `${(m.totalSpend/1000).toFixed(0)}к₽` },
-              { label: "За год",    value: `${(m.yearSpend/1000).toFixed(1)}к₽` },
+              { label: "Потрачено", value: `${(m.totalSpend/1000).toFixed(0)}т₽` },
+              { label: "За год",    value: `${(m.yearSpend/1000).toFixed(1)}т₽` },
               { label: "Ср. чек",   value: `${m.avgCheck}₽` },
             ].map(({ label, value }) => (
               <div key={label} className="bg-white border border-[hsl(var(--border))] rounded-xl p-2.5 text-center shadow-sm">
@@ -285,7 +285,7 @@ export default function FamilyScreen({ onNavigate, onBack }: FamilyScreenProps) 
         <div className="grid grid-cols-3 gap-3">
           {[
             { label: "Визитов", value: String(totalFamilyVisits) },
-            { label: "Потрачено", value: `${(totalFamilySpend/1000).toFixed(0)} к₽` },
+            { label: "Потрачено", value: `${(totalFamilySpend/1000).toFixed(0)} т₽` },
             { label: "Бонусов", value: `${totalFamilyBonus} Б` },
           ].map(({ label, value }) => (
             <div key={label} className="text-center">

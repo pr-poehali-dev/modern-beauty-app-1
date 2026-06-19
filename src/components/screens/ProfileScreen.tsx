@@ -380,8 +380,8 @@ export default function ProfileScreen({ onNavigate }: ProfileScreenProps) {
       {tab === "family" && (
         <div className="flex flex-col gap-2 animate-fade-in flex-1 overflow-y-auto scrollbar-hide min-h-0">
           {[
-            { name: "Маша", relation: "Дочь", age: "8 лет",  img: MASHA_IMG, lastVisit: "1 мая",   nextVisit: null,            phone: null,              note: "Любит короткие стрижки" },
-            { name: "Миша", relation: "Сын",  age: "12 лет", img: MISHA_IMG, lastVisit: "15 апр.", nextVisit: "12 июня 11:00", phone: null,              note: "Обычная стрижка, не короче 2 см" },
+            { name: "Маша Петрова",    relation: "Дочь", age: "8 лет, 03.04.2016",  img: MASHA_IMG, lastVisit: "1 мая 2026",   nextVisit: null,               note: "Боится машинки — только ножницами. Не любит фен" },
+            { name: "Михаил Петров",  relation: "Сын",  age: "13 лет, 17.09.2012", img: MISHA_IMG, lastVisit: "15 апр. 2026", nextVisit: "12 июля 11:00",    note: "Не короче 2 см сверху, машинкой + ножницами" },
           ].map((m, i) => (
             <div key={i} className="bg-white border border-[hsl(var(--border))] rounded-2xl overflow-hidden shadow-sm">
               <div className="px-4 py-3.5 flex items-center gap-3">
