@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 
 import HomeScreen from "@/components/screens/HomeScreen";
 import BookingScreen from "@/components/screens/BookingScreen";
@@ -14,17 +14,51 @@ import PaymentScreen from "@/components/screens/PaymentScreen";
 import SalonScreen from "@/components/screens/SalonScreen";
 import SettingsScreen from "@/components/screens/SettingsScreen";
 import PromoScreen from "@/components/screens/PromoScreen";
+import FamilyScreen from "@/components/screens/FamilyScreen";
 import BottomNav from "@/components/BottomNav";
 import Icon from "@/components/ui/icon";
 
 export type Screen =
   | "home" | "booking" | "history" | "loyalty" | "profile"
   | "masters" | "catalog" | "chat" | "login"
-  | "my-bookings" | "payment" | "salon" | "settings" | "promos";
+  | "my-bookings" | "payment" | "salon" | "settings" | "promos" | "family";
 
 export default function Index() {
   const [activeScreen, setActiveScreen] = useState<Screen>("home");
+  const [screenHistory, setScreenHistory] = useState<Screen[]>([]);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const navigateTo = useCallback((screen: Screen) => {
+    setScreenHistory(prev => [...prev, activeScreen]);
+    setActiveScreen(screen);
+  }, [activeScreen]);
+
+  const goBack = useCallback(() => {
+    setScreenHistory(prev => {
+      if (prev.length === 0) return prev;
+      const history = [...prev];
+      const last = history.pop()!;
+      setActiveScreen(last);
+      return history;
+    });
+  }, []);
+
+  // Swipe right to go back
+  const touchStartX = useRef<number>(0);
+  const touchStartY = useRef<number>(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    const dy = Math.abs(e.changedTouches[0].clientY - touchStartY.current);
+    if (dx > 60 && dy < 80 && screenHistory.length > 0) {
+      goBack();
+    }
+  };
 
   if (!isLoggedIn) {
     return <LoginScreen onLogin={() => setIsLoggedIn(true)} />;
@@ -32,20 +66,21 @@ export default function Index() {
 
   const renderScreen = () => {
     switch (activeScreen) {
-      case "home":        return <HomeScreen onNavigate={setActiveScreen} />;
-      case "booking":     return <BookingScreen onNavigate={setActiveScreen} />;
-      case "history":     return <HistoryScreen onNavigate={setActiveScreen} />;
-      case "loyalty":     return <LoyaltyScreen onNavigate={setActiveScreen} />;
-      case "profile":     return <ProfileScreen onNavigate={setActiveScreen} />;
-      case "masters":     return <MastersScreen onNavigate={setActiveScreen} />;
-      case "catalog":     return <CatalogScreen onNavigate={setActiveScreen} />;
-      case "chat":        return <ChatScreen onNavigate={setActiveScreen} />;
-      case "my-bookings": return <MyBookingsScreen onNavigate={setActiveScreen} />;
-      case "payment":     return <PaymentScreen onNavigate={setActiveScreen} />;
-      case "salon":       return <SalonScreen onNavigate={setActiveScreen} />;
-      case "settings":    return <SettingsScreen onNavigate={setActiveScreen} />;
-      case "promos":      return <PromoScreen onNavigate={setActiveScreen} />;
-      default:            return <HomeScreen onNavigate={setActiveScreen} />;
+      case "home":        return <HomeScreen onNavigate={navigateTo} />;
+      case "booking":     return <BookingScreen onNavigate={navigateTo} />;
+      case "history":     return <HistoryScreen onNavigate={navigateTo} />;
+      case "loyalty":     return <LoyaltyScreen onNavigate={navigateTo} />;
+      case "profile":     return <ProfileScreen onNavigate={navigateTo} />;
+      case "masters":     return <MastersScreen onNavigate={navigateTo} />;
+      case "catalog":     return <CatalogScreen onNavigate={navigateTo} />;
+      case "chat":        return <ChatScreen onNavigate={navigateTo} />;
+      case "my-bookings": return <MyBookingsScreen onNavigate={navigateTo} />;
+      case "payment":     return <PaymentScreen onNavigate={navigateTo} />;
+      case "salon":       return <SalonScreen onNavigate={navigateTo} />;
+      case "settings":    return <SettingsScreen onNavigate={navigateTo} />;
+      case "promos":      return <PromoScreen onNavigate={navigateTo} />;
+      case "family":      return <FamilyScreen onNavigate={navigateTo} onBack={goBack} />;
+      default:            return <HomeScreen onNavigate={navigateTo} />;
     }
   };
 
@@ -54,30 +89,44 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-[hsl(var(--gray-soft))] flex justify-center items-start">
-      <div className="w-full max-w-[430px] min-h-screen bg-[hsl(var(--gray-soft))] relative flex flex-col overflow-hidden shadow-2xl">
+      <div
+        className="w-full max-w-[430px] min-h-screen bg-[hsl(var(--gray-soft))] relative flex flex-col overflow-hidden shadow-2xl"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
 
         {/* Header */}
         <header className="flex items-center justify-between px-4 pt-12 pb-3 bg-[hsl(var(--gray-soft))] z-20 sticky top-0">
-          <button
-            onClick={() => setActiveScreen(activeScreen === "salon" ? "home" : "salon")}
-            className="flex items-center gap-2.5"
-          >
-            <div className="w-10 h-10 gradient-orange rounded-2xl flex items-center justify-center orange-glow">
-              <span className="text-white text-base font-bold font-golos">М</span>
-            </div>
-            <div>
-              <span className="font-golos font-bold text-lg text-[hsl(var(--text-main))] leading-none block">
-                {activeScreen === "salon" ? "О салоне" : "Модерн"}
-              </span>
-              <span className="font-golos text-[10px] text-[hsl(var(--text-secondary))] leading-none">
-                {activeScreen === "salon" ? "← назад" : "О салоне →"}
-              </span>
-            </div>
-          </button>
+          <div className="flex items-center gap-2">
+            {screenHistory.length > 0 && activeScreen !== "home" && (
+              <button
+                onClick={goBack}
+                className="w-9 h-9 bg-white border border-[hsl(var(--border))] rounded-xl flex items-center justify-center shadow-sm transition-all active:scale-95"
+              >
+                <Icon name="ChevronLeft" size={20} className="text-[hsl(var(--text-secondary))]" />
+              </button>
+            )}
+            <button
+              onClick={() => navigateTo(activeScreen === "salon" ? "home" : "salon")}
+              className="flex items-center gap-2.5"
+            >
+              <div className="w-10 h-10 gradient-orange rounded-2xl flex items-center justify-center orange-glow">
+                <span className="text-white text-base font-bold font-golos">М</span>
+              </div>
+              <div>
+                <span className="font-golos font-bold text-lg text-[hsl(var(--text-main))] leading-none block">
+                  {activeScreen === "salon" ? "О салоне" : "Модерн"}
+                </span>
+                <span className="font-golos text-[10px] text-[hsl(var(--text-secondary))] leading-none">
+                  {activeScreen === "salon" ? "← назад" : "О салоне →"}
+                </span>
+              </div>
+            </button>
+          </div>
           <div className="flex items-center gap-2">
             {/* Мои записи */}
             <button
-              onClick={() => setActiveScreen("my-bookings")}
+              onClick={() => navigateTo("my-bookings")}
               className="w-11 h-11 rounded-2xl bg-white border border-[hsl(var(--border))] flex items-center justify-center transition-all active:scale-95 relative shadow-sm"
             >
               <Icon name="CalendarDays" size={20} className="text-[hsl(var(--text-secondary))]" />
@@ -85,7 +134,7 @@ export default function Index() {
             </button>
             {/* Чат */}
             <button
-              onClick={() => setActiveScreen("chat")}
+              onClick={() => navigateTo("chat")}
               className="w-11 h-11 rounded-2xl bg-white border border-[hsl(var(--border))] flex items-center justify-center transition-all active:scale-95 relative shadow-sm"
             >
               <Icon name="MessageCircle" size={20} className="text-[hsl(var(--text-secondary))]" />
@@ -93,7 +142,7 @@ export default function Index() {
             </button>
             {/* Настройки */}
             <button
-              onClick={() => setActiveScreen("settings")}
+              onClick={() => navigateTo("settings")}
               className={`w-11 h-11 rounded-2xl border flex items-center justify-center transition-all active:scale-95 shadow-sm ${
                 activeScreen === "settings"
                   ? "gradient-orange border-transparent orange-glow"

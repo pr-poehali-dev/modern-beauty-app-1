@@ -409,9 +409,13 @@ export default function ProfileScreen({ onNavigate }: ProfileScreenProps) {
               </div>
             </div>
           ))}
-          <button className="bg-white border-2 border-dashed border-[hsl(var(--border))] rounded-2xl py-4 flex items-center justify-center gap-2 font-golos text-sm text-[hsl(var(--text-secondary))]">
-            <Icon name="Plus" size={16} />
-            Добавить члена семьи (+70 Б)
+          <button onClick={() => onNavigate("family")}
+            className="bg-white border-2 border-dashed border-[hsl(var(--border))] rounded-2xl py-4 flex items-center justify-center gap-2">
+            <Icon name="Users" size={16} className="text-[hsl(var(--primary))]" />
+            <div className="text-left">
+              <p className="font-golos text-sm font-semibold text-[hsl(var(--text-main))]">Семейный профиль</p>
+              <p className="font-golos text-[10px] text-[hsl(var(--primary))] font-bold">+100 Б за каждого нового члена</p>
+            </div>
           </button>
         </div>
       )}

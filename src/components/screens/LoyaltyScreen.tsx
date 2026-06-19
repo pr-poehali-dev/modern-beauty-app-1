@@ -18,9 +18,9 @@ const levels = [
 
 const earnActions = [
   { action: "Первая запись через приложение", points: "+150" },
-  { action: "Запись через приложение",        points: "+20"  },
-  { action: "Посещение услуги",               points: "+5%"  },
-  { action: "Повтор записи в 30 дней",        points: "+100" },
+  { action: "Запись через приложение",        points: "+50"  },
+  { action: "Посещение услуги",               points: "+2%"  },
+  { action: "Добавление члена семьи",         points: "+100" },
   { action: "День рождения клиента",          points: "+200" },
   { action: "Отзыв с фото",                  points: "+50"  },
   { action: "Приглашение друга",              points: "+200" },
@@ -28,10 +28,11 @@ const earnActions = [
 ];
 
 const pointsHistory = [
-  { date: "12 мая", desc: "Балаяж + стрижка",       points: "+425", expiry: "12 нояб." },
-  { date: "1 мая",  desc: "Семейный визит",           points: "+150", expiry: "1 нояб."  },
-  { date: "20 апр.", desc: "Маникюр",                points: "+75",  expiry: "20 окт."  },
-  { date: "1 мая",  desc: "Детская стрижка",          points: "+70",  expiry: "1 нояб."  },
+  { date: "12 мая", desc: "Балаяж + стрижка (2% от 8 500 ₽)", points: "+170", expiry: "12 нояб." },
+  { date: "1 мая",  desc: "Запись через приложение",           points: "+50",  expiry: "1 нояб."  },
+  { date: "1 мая",  desc: "Семейный визит (+3 чел.)",          points: "+250", expiry: "1 нояб."  },
+  { date: "20 апр.", desc: "Маникюр (2% от 1 500 ₽)",         points: "+30",  expiry: "20 окт."  },
+  { date: "1 мая",  desc: "Детская стрижка (2% от 900 ₽)",    points: "+18",  expiry: "1 нояб."  },
 ];
 
 const currentPoints = 1240;
@@ -68,7 +69,7 @@ export default function LoyaltyScreen({ onNavigate }: LoyaltyScreenProps) {
               <div>
                 <p className="font-golos text-white/70 text-[10px]">Баланс бонусов</p>
                 <p className="font-golos font-bold text-3xl leading-none mt-0.5">1 240</p>
-                <p className="font-golos text-white/70 text-xs mt-0.5">= 620 ₽ <span className="text-white/50 text-[10px]">(1 Б = 0,5 ₽)</span></p>
+                <p className="font-golos text-white/70 text-xs mt-0.5">= 1 240 ₽ <span className="text-white/50 text-[10px]">(1 Б = 1 ₽)</span></p>
               </div>
               <div className="text-right">
                 <div className="bg-white/20 rounded-xl px-2.5 py-1 mb-1">

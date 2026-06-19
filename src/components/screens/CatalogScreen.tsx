@@ -81,7 +81,7 @@ export default function CatalogScreen({ onNavigate }: CatalogScreenProps) {
           <Icon name="Package" size={36} className="text-white" />
         </div>
         <h2 className="font-golos font-bold text-2xl text-[hsl(var(--text-main))] text-center mb-2">Заказ оформлен!</h2>
-        <p className="font-golos text-[hsl(var(--text-secondary))] text-center text-sm mb-5">Товары будут готовы к выдаче в салоне или доставлены в течение 2–3 дней</p>
+        <p className="font-golos text-[hsl(var(--text-secondary))] text-center text-sm mb-5">Товары забронированы и ждут вас в салоне по адресу: г. Городец, Пролетарская площадь, 2</p>
         <div className="bg-[hsl(var(--orange-light))] rounded-2xl px-5 py-3 mb-8">
           <p className="font-golos text-sm text-[hsl(var(--primary))] font-medium text-center">✨ +{cartBonus} баллов начислится после выкупа</p>
         </div>
@@ -230,23 +230,19 @@ export default function CatalogScreen({ onNavigate }: CatalogScreenProps) {
                 <span className="font-golos font-bold text-xl">{cartTotal.toLocaleString()} ₽</span>
               </div>
             </div>
-            <div className="mb-5 space-y-2">
-              {[
-                { icon: "Store", label: "Забрать в салоне", desc: "ул. Ленина, 45 · Бесплатно", active: true },
-                { icon: "Truck", label: "Доставка", desc: "2–3 рабочих дня · 350 ₽", active: false },
-              ].map(({ icon, label, desc, active }) => (
-                <button key={label} className={`w-full p-3.5 border-2 rounded-2xl flex items-center gap-3 ${active ? "border-[hsl(var(--primary))] bg-[hsl(var(--orange-light))]" : "border-[hsl(var(--border))] bg-white"}`}>
-                  <Icon name={icon} size={20} className={active ? "text-[hsl(var(--primary))]" : "text-[hsl(var(--text-secondary))]"} />
-                  <div className="text-left flex-1">
-                    <p className={`font-golos font-semibold text-sm ${active ? "text-[hsl(var(--primary))]" : "text-[hsl(var(--text-main))]"}`}>{label}</p>
-                    <p className="font-golos text-xs text-[hsl(var(--text-secondary))]">{desc}</p>
-                  </div>
-                  {active && <Icon name="Check" size={16} className="text-[hsl(var(--primary))]" />}
-                </button>
-              ))}
+            <div className="mb-5">
+              <div className="bg-[hsl(var(--orange-light))] border border-[hsl(var(--primary))]/20 rounded-2xl p-3.5 flex items-center gap-3">
+                <Icon name="Store" size={20} className="text-[hsl(var(--primary))] shrink-0" />
+                <div className="text-left flex-1">
+                  <p className="font-golos font-semibold text-sm text-[hsl(var(--primary))]">Самовывоз из салона</p>
+                  <p className="font-golos text-xs text-[hsl(var(--text-secondary))]">г. Городец, Пролетарская площадь, 2 · Бесплатно</p>
+                </div>
+                <Icon name="Check" size={16} className="text-[hsl(var(--primary))]" />
+              </div>
             </div>
-            <button onClick={() => setOrdered(true)} className="w-full py-4 gradient-orange text-white font-golos font-semibold rounded-2xl orange-glow">
-              Оформить заказ · {cartTotal.toLocaleString()} ₽
+            <button onClick={() => setOrdered(true)} className="w-full py-4 gradient-orange text-white font-golos font-semibold rounded-2xl orange-glow flex items-center justify-center gap-2">
+              <Icon name="CalendarCheck" size={18} className="text-white" />
+              Забронировать · {cartTotal.toLocaleString()} ₽
             </button>
           </>
         )}

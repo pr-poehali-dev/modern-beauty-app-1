@@ -6,9 +6,6 @@ interface ChatScreenProps {
   onNavigate: (screen: Screen) => void;
 }
 
-const M1 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/e3ed684a-5b91-442d-bbef-325e47bc1166.jpg";
-const M2 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/071bff46-8350-48ce-b930-d2203794d5d2.jpg";
-const M3 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/ebd24705-5d23-4a30-b95a-a058766b8e3f.jpg";
 const SALON_IMG = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/fab8dc1d-5f2d-41f2-bb61-e473dcfdb243.jpg";
 
 type Message = {
@@ -36,39 +33,11 @@ type Dialog = {
 
 const dialogs: Dialog[] = [
   {
-    id: 1, name: "Анастасия Романова", role: "Колорист, стилист",
-    avatar: M1, online: true, lastMessage: "Маску Olaplex нужно наносить после шампуня 😊",
-    lastTime: "14:06", unread: 0,
-    messages: [
-      { id: 1, from: "master", name: "Анастасия", text: "Добрый день, Анна! 👋 Чем могу помочь?", time: "14:02", avatar: M1 },
-      { id: 2, from: "me", text: "Добрый день! Мне нужна маска до или после шампуня?", time: "14:05" },
-      { id: 3, from: "master", name: "Анастасия", text: "Маску Olaplex нужно наносить после шампуня на влажные волосы, оставить на 10 минут и смыть 😊", time: "14:06", avatar: M1 },
-    ],
-  },
-  {
-    id: 2, name: "Мария Смирнова", role: "Мастер по стрижкам",
-    avatar: M2, online: false, lastMessage: "Маша выглядела замечательно после стрижки!",
-    lastTime: "Вчера", unread: 2,
-    messages: [
-      { id: 1, from: "master", name: "Мария", text: "Добрый день! Маша выглядела замечательно после стрижки 💛 Буду рада видеть вас снова!", time: "11:30", avatar: M2 },
-      { id: 2, from: "master", name: "Мария", text: "Кстати, скоро привезут новую коллекцию детских аксессуаров для волос — расскажу подробнее на следующем визите 🎀", time: "11:31", avatar: M2 },
-    ],
-  },
-  {
-    id: 3, name: "Елена Козлова", role: "Мастер маникюра и бровей",
-    avatar: M3, online: false, lastMessage: "Для поддержания маникюра рекомендую масло для кутикулы",
-    lastTime: "2 дня назад", unread: 0,
-    messages: [
-      { id: 1, from: "master", name: "Елена", text: "Для поддержания маникюра рекомендую масло для кутикулы Orly. Используйте каждый вечер перед сном 💅", time: "16:00", avatar: M3 },
-      { id: 2, from: "master", name: "Елена", text: "", time: "16:01", avatar: M3, photo: M3 },
-    ],
-  },
-  {
     id: 0, name: "Администратор «Модерн»", role: "Запись, вопросы, оплата",
-    avatar: SALON_IMG, online: true, lastMessage: "✅ Ваша запись подтверждена! 5 июня 14:30",
+    avatar: SALON_IMG, online: true, lastMessage: "✅ Ваша запись подтверждена! 29 июня 14:30",
     lastTime: "10:00", unread: 1,
     messages: [
-      { id: 1, from: "master", name: "Модерн", text: "✅ Ваша запись подтверждена!\n\nСтрижка + укладка\n📅 5 июня, 14:30\n👩‍🎨 Анастасия Романова\n📍 ул. Ленина, 45", time: "10:00", avatar: SALON_IMG, isNotification: true },
+      { id: 1, from: "master", name: "Модерн", text: "✅ Ваша запись подтверждена!\n\nСтрижка + укладка\n📅 29 июня, 14:30\n👩‍🎨 Анастасия Романова\n📍 г. Городец, Пролетарская площадь, 2", time: "10:00", avatar: SALON_IMG, isNotification: true },
     ],
   },
 ];
@@ -128,7 +97,7 @@ export default function ChatScreen({ onNavigate }: ChatScreenProps) {
         <div className="flex items-center justify-between shrink-0">
           <div>
             <h2 className="font-golos font-bold text-lg text-[hsl(var(--text-main))]">Сообщения</h2>
-            <p className="font-golos text-[10px] text-[hsl(var(--text-secondary))]">Чат с мастерами и администратором</p>
+            <p className="font-golos text-[10px] text-[hsl(var(--text-secondary))]">Чат с администратором салона</p>
           </div>
           {totalUnread > 0 && (
             <span className="gradient-orange text-white text-xs font-bold px-3 py-1 rounded-xl">{totalUnread} новых</span>
@@ -169,11 +138,7 @@ export default function ChatScreen({ onNavigate }: ChatScreenProps) {
             </button>
           ))}
 
-          <button onClick={() => onNavigate("masters")}
-            className="w-full py-3 border-2 border-dashed border-[hsl(var(--border))] rounded-2xl flex items-center justify-center gap-2 font-golos text-sm text-[hsl(var(--text-secondary))]">
-            <Icon name="Plus" size={15} />
-            Написать другому мастеру
-          </button>
+
         </div>
       </div>
     );

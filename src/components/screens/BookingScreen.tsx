@@ -30,22 +30,22 @@ const serviceCats = [
 ];
 
 const servicesList = [
-  { name: "Стрижка женская",          price: 1800, duration: 60,  bonus: 90,  category: "women" },
-  { name: "Стрижка + укладка",        price: 2500, duration: 75,  bonus: 125, category: "women" },
-  { name: "Мужская стрижка",          price: 1200, duration: 40,  bonus: 60,  category: "men"   },
-  { name: "Детская стрижка",          price: 900,  duration: 30,  bonus: 45,  category: "kids"  },
-  { name: "Окрашивание (балаяж)",     price: 7500, duration: 180, bonus: 375, category: "color" },
-  { name: "Тонирование",              price: 3500, duration: 90,  bonus: 175, category: "color" },
-  { name: "Укладка",                  price: 1200, duration: 45,  bonus: 60,  category: "women" },
-  { name: "Маска Olaplex",            price: 2200, duration: 40,  bonus: 110, category: "care"  },
-  { name: "Маникюр классический",     price: 1500, duration: 60,  bonus: 75,  category: "nails" },
-  { name: "Маникюр с покрытием",      price: 2200, duration: 90,  bonus: 110, category: "nails" },
-  { name: "Коррекция бровей",         price: 800,  duration: 30,  bonus: 40,  category: "brows" },
+  { name: "Стрижка женская",          price: 1800, duration: 60,  bonus: 36,  category: "women" },
+  { name: "Стрижка + укладка",        price: 2500, duration: 75,  bonus: 50,  category: "women" },
+  { name: "Мужская стрижка",          price: 1200, duration: 40,  bonus: 24,  category: "men"   },
+  { name: "Детская стрижка",          price: 900,  duration: 30,  bonus: 18,  category: "kids"  },
+  { name: "Окрашивание (балаяж)",     price: 7500, duration: 180, bonus: 150, category: "color" },
+  { name: "Тонирование",              price: 3500, duration: 90,  bonus: 70,  category: "color" },
+  { name: "Укладка",                  price: 1200, duration: 45,  bonus: 24,  category: "women" },
+  { name: "Маска Olaplex",            price: 2200, duration: 40,  bonus: 44,  category: "care"  },
+  { name: "Маникюр классический",     price: 1500, duration: 60,  bonus: 30,  category: "nails" },
+  { name: "Маникюр с покрытием",      price: 2200, duration: 90,  bonus: 44,  category: "nails" },
+  { name: "Коррекция бровей",         price: 800,  duration: 30,  bonus: 16,  category: "brows" },
 ];
 
 const days = [
-  { label: "Пн", date: "2" }, { label: "Вт", date: "3" }, { label: "Ср", date: "4" },
-  { label: "Чт", date: "5" }, { label: "Пт", date: "6" }, { label: "Сб", date: "7" }, { label: "Вс", date: "8" },
+  { label: "Пн", date: "29" }, { label: "Вт", date: "30" }, { label: "Ср", date: "1" },
+  { label: "Чт", date: "2" }, { label: "Пт", date: "3" }, { label: "Сб", date: "4" }, { label: "Вс", date: "5" },
 ];
 
 const times = ["09:00","10:00","11:30","13:00","14:30","16:00","17:30","18:00","19:00"];
@@ -58,7 +58,7 @@ export default function BookingScreen({ onNavigate }: BookingScreenProps) {
   const [selectedMaster, setSelectedMaster] = useState<Master | null>(null);
   const [serviceCat, setServiceCat] = useState("all");
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const [selectedDay, setSelectedDay] = useState("5");
+  const [selectedDay, setSelectedDay] = useState("29");
   const [selectedTime, setSelectedTime] = useState("");
   const [confirmed, setConfirmed] = useState(false);
   const [useBonus, setUseBonus] = useState(false);
@@ -86,7 +86,7 @@ export default function BookingScreen({ onNavigate }: BookingScreenProps) {
         </div>
         <div className="bg-[hsl(var(--orange-light))] rounded-2xl px-5 py-3 w-full text-center border border-[hsl(var(--primary))]/15">
           <p className="font-golos text-sm text-[hsl(var(--primary))] font-semibold">
-            ✨ +20 баллов начислено за запись через приложение
+            ✨ +50 баллов начислено за запись через приложение
           </p>
         </div>
         <button

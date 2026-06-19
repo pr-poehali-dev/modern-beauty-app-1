@@ -11,10 +11,7 @@ const QR_APP    = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&colo
 const QR_INVITE = "https://api.qrserver.com/v1/create-qr-code/?size=140x140&color=1a1108&bgcolor=f0ede8&data=https://modern-beauty-salon-app--preview.poehali.dev/invite/00142&qzone=1";
 
 const socials = [
-  { icon: "Instagram",    label: "Instagram", handle: "@modern_gorodets",  bg: "bg-pink-50",  fg: "text-pink-500",  url: "https://instagram.com" },
-  { icon: "Send",         label: "ВКонтакте", handle: "vk.com/modern",     bg: "bg-blue-50",  fg: "text-blue-500",  url: "https://vk.com"       },
-  { icon: "MessageCircle", label: "Telegram", handle: "@modern_gorodets",  bg: "bg-sky-50",   fg: "text-sky-500",   url: "https://t.me"         },
-  { icon: "Youtube",      label: "YouTube",   handle: "Канал «Модерн»",    bg: "bg-red-50",   fg: "text-red-500",   url: "https://youtube.com"  },
+  { icon: "Send", label: "ВКонтакте", handle: "vk.com/modern", bg: "bg-blue-50", fg: "text-blue-500", url: "https://vk.com" },
 ];
 
 const services = [
@@ -101,12 +98,12 @@ export default function SalonScreen({ onNavigate }: SalonScreenProps) {
           </button>
 
           {/* Socials compact */}
-          <div className="grid grid-cols-4 gap-2">
+          <div className="flex gap-2">
             {socials.map(({ icon, label, bg, fg, url }) => (
               <a key={label} href={url} target="_blank" rel="noopener noreferrer"
-                className={`${bg} rounded-2xl p-3 flex flex-col items-center gap-1`}>
+                className={`${bg} rounded-2xl px-4 py-3 flex items-center gap-2`}>
                 <Icon name={icon} size={18} className={fg} />
-                <span className="font-golos text-[9px] font-semibold text-[hsl(var(--text-main))]">{label}</span>
+                <span className="font-golos text-sm font-semibold text-[hsl(var(--text-main))]">{label}</span>
               </a>
             ))}
           </div>

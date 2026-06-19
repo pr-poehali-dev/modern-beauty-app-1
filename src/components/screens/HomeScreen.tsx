@@ -21,7 +21,7 @@ const actions: { icon: string; label: string; screen: Screen; color: string; tex
   { icon: "CalendarDays",  label: "Мои записи",    screen: "my-bookings",  color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
   { icon: "MessageCircle", label: "Чат",           screen: "chat",         color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
   { icon: "Scissors",      label: "Мастера",       screen: "masters",      color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
-  { icon: "CreditCard",    label: "Оплата",        screen: "payment",      color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
+  { icon: "Tag",           label: "Скидки",        screen: "promos",       color: "bg-white border border-[hsl(var(--border))]", textColor: "text-[hsl(var(--text-main))]" },
 ];
 
 const family = [
@@ -44,7 +44,7 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
       <div className="gradient-orange rounded-2xl px-4 py-3.5 text-white orange-glow flex items-center justify-between animate-fade-in-up">
         <div>
           <p className="font-golos text-white/70 text-xs">Добрый день, Анна 👋</p>
-          <p className="font-golos font-bold text-2xl leading-none mt-0.5">1 240 Б = 620 ₽</p>
+          <p className="font-golos font-bold text-2xl leading-none mt-0.5">1 240 Б = 1 240 ₽</p>
           <p className="font-golos text-white/70 text-[10px] mt-0.5">⭐ Постоянный гость · скидка 10%</p>
         </div>
         <div className="text-right flex flex-col items-end gap-1.5">
@@ -88,12 +88,12 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
           <div className="min-w-0">
             <p className="font-golos font-bold text-sm text-[hsl(var(--text-main))] truncate">Анна Петрова</p>
             <p className="font-golos text-[10px] text-[hsl(var(--text-secondary))]">⭐ Постоянный гость</p>
-            <p className="font-golos text-[10px] text-[hsl(var(--primary))] font-semibold">1 240 Б = 620 ₽</p>
+            <p className="font-golos text-[10px] text-[hsl(var(--primary))] font-semibold">1 240 Б = 1 240 ₽</p>
           </div>
         </button>
 
         {/* Family quick access */}
-        <button onClick={() => onNavigate("profile")}
+        <button onClick={() => onNavigate("family")}
           className="bg-white border border-[hsl(var(--border))] rounded-2xl p-3 shadow-sm text-left transition-all active:scale-95">
           <p className="font-golos font-semibold text-xs text-[hsl(var(--text-main))] mb-2">Моя семья</p>
           <div className="flex items-center gap-1.5">
