@@ -15,6 +15,21 @@ const CLIENT1 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff
 
 const upcoming = [
   {
+    id: 0,
+    client: "Петрова Анна Николаевна",
+    service: "Окрашивание корней + уход",
+    master: "Анастасия Романова",
+    masterAvatar: MASTER1,
+    date: "22 июня 2026",
+    time: "12:00",
+    duration: 90,
+    price: 4200,
+    status: "confirmed",
+    address: "г. Городец, Пролетарская площадь, 2",
+    needsPayment: true,
+    maxBonusPercent: 30,
+  },
+  {
     id: 1,
     client: "Петрова Анна Николаевна",
     service: "Стрижка + укладка",
@@ -109,6 +124,7 @@ type ReviewModal = { id: number; service: string; withPhoto: boolean } | null;
 
 export default function MyBookingsScreen({ onNavigate }: MyBookingsScreenProps) {
   const [tab, setTab] = useState<"upcoming" | "past">("upcoming");
+  const [bonusPoints, setBonusPoints] = useState(0);
   const [cancelModal, setCancelModal] = useState<CancelModal>(null);
   const [reviewModal, setReviewModal] = useState<ReviewModal>(null);
   const [reviewStars, setReviewStars] = useState(0);
@@ -295,6 +311,49 @@ export default function MyBookingsScreen({ onNavigate }: MyBookingsScreenProps) 
                   <Icon name="MapPin" size={13} />
                   <span className="font-golos text-xs">{visit.address}</span>
                 </div>
+
+                {/* Bonus payment block */}
+                {visit.needsPayment && (() => {
+                  const maxBonus = Math.floor(visit.price * (visit.maxBonusPercent / 100));
+                  const availableBonus = Math.min(1240, maxBonus);
+                  const sliderVal = visit.id === 0 ? bonusPoints : 0;
+                  const toPay = visit.price - sliderVal;
+                  return (
+                    <div className="bg-[hsl(var(--orange-light))] border border-[hsl(var(--primary))]/20 rounded-2xl p-3.5 mb-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-1.5">
+                          <Icon name="Sparkles" size={14} className="text-[hsl(var(--primary))]" />
+                          <p className="font-golos font-semibold text-sm text-[hsl(var(--primary))]">Списать баллами</p>
+                        </div>
+                        <span className="font-golos text-xs text-[hsl(var(--text-secondary))]">до {visit.maxBonusPercent}% от суммы</span>
+                      </div>
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-golos text-xs text-[hsl(var(--text-secondary))]">Доступно: 1 240 Б</span>
+                        <span className="font-golos text-xs text-[hsl(var(--text-secondary))]">Макс: {availableBonus} Б</span>
+                      </div>
+                      <input
+                        type="range" min={0} max={availableBonus} step={10}
+                        value={sliderVal}
+                        onChange={e => setBonusPoints(Number(e.target.value))}
+                        className="w-full accent-[hsl(var(--primary))] mb-2"
+                      />
+                      <div className="flex items-center justify-between bg-white rounded-xl px-3 py-2">
+                        <div>
+                          <p className="font-golos text-[10px] text-[hsl(var(--text-secondary))]">Списать баллов</p>
+                          <p className="font-golos font-bold text-base text-[hsl(var(--primary))]">{sliderVal} Б</p>
+                        </div>
+                        <Icon name="ArrowRight" size={14} className="text-[hsl(var(--text-secondary))]" />
+                        <div className="text-right">
+                          <p className="font-golos text-[10px] text-[hsl(var(--text-secondary))]">К оплате</p>
+                          <p className="font-golos font-bold text-base text-[hsl(var(--text-main))]">{toPay.toLocaleString()} ₽</p>
+                        </div>
+                      </div>
+                      <button className="w-full mt-2.5 py-2.5 gradient-orange text-white font-golos font-semibold text-sm rounded-xl orange-glow">
+                        Оплатить {toPay.toLocaleString()} ₽{sliderVal > 0 ? ` + ${sliderVal} Б` : ""}
+                      </button>
+                    </div>
+                  );
+                })()}
 
                 {/* Actions */}
                 <div className="grid grid-cols-2 gap-2">
