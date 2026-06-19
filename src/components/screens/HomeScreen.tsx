@@ -137,7 +137,7 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
         </div>
         <div className="flex-1 min-w-0">
           <p className="font-golos font-semibold text-sm text-[hsl(var(--text-main))]">Окрашивание + стрижка</p>
-          <p className="font-golos text-xs text-[hsl(var(--text-secondary))]">Скидка 20% до конца мая</p>
+          <p className="font-golos text-xs text-[hsl(var(--text-secondary))]">Скидка 20% до 20 июля</p>
         </div>
         <span className="gradient-orange text-white font-golos font-bold text-xs px-2.5 py-1 rounded-xl shrink-0">-20%</span>
       </div>
