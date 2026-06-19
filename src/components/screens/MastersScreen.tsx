@@ -13,6 +13,7 @@ const MASTER4 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff
 const WORK1   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/7c69e209-43ba-4185-b561-0b5a8cff492d.jpg";
 const WORK2   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/16cbc8c4-ea9d-4083-9fff-12c510e31a77.jpg";
 const WORK3   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/074f6916-0888-4bbb-a368-79f2886fb8e8.jpg";
+const WORK4   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/2be3e3de-8a61-40c6-b1ec-f14e8efa4bba.jpg";
 
 const masters = [
   {
@@ -72,6 +73,7 @@ const masters = [
     freeSlot: "Послезавтра, 12:00",
     avatar: MASTER4,
     works: [
+      { before: WORK4, after: WORK4, desc: "Мужская стрижка" },
       { before: WORK1, after: WORK3, desc: "Укладка и завивка"       },
       { before: WORK3, after: WORK2, desc: "Выпрямление и уход Olaplex" },
     ],
