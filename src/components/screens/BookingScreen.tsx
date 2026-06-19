@@ -44,8 +44,8 @@ const servicesList = [
 ];
 
 const days = [
-  { label: "Пн", date: "29" }, { label: "Вт", date: "30" }, { label: "Ср", date: "1" },
-  { label: "Чт", date: "2" }, { label: "Пт", date: "3" }, { label: "Сб", date: "4" }, { label: "Вс", date: "5" },
+  { label: "Пн", date: "7" }, { label: "Вт", date: "8" }, { label: "Ср", date: "9" },
+  { label: "Чт", date: "10" }, { label: "Пт", date: "11" }, { label: "Сб", date: "12" }, { label: "Вс", date: "13" },
 ];
 
 const times = ["09:00","10:00","11:30","13:00","14:30","16:00","17:30","18:00","19:00"];
@@ -58,7 +58,7 @@ export default function BookingScreen({ onNavigate }: BookingScreenProps) {
   const [selectedMaster, setSelectedMaster] = useState<Master | null>(null);
   const [serviceCat, setServiceCat] = useState("all");
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const [selectedDay, setSelectedDay] = useState("29");
+  const [selectedDay, setSelectedDay] = useState("7");
   const [selectedTime, setSelectedTime] = useState("");
   const [confirmed, setConfirmed] = useState(false);
   const [useBonus, setUseBonus] = useState(false);
@@ -210,7 +210,10 @@ export default function BookingScreen({ onNavigate }: BookingScreenProps) {
 
       {/* ── DATE & TIME ── */}
       <div>
-        <p className="font-golos text-[10px] font-bold text-[hsl(var(--text-secondary))] uppercase tracking-wider mb-2">Дата и время</p>
+        <div className="flex items-center justify-between mb-2">
+          <p className="font-golos text-[10px] font-bold text-[hsl(var(--text-secondary))] uppercase tracking-wider">Дата и время</p>
+          <span className="font-golos text-xs font-semibold text-[hsl(var(--primary))]">Июль 2026</span>
+        </div>
         {/* Days */}
         <div className="flex gap-2 overflow-x-auto scrollbar-hide mb-3">
           {days.map(d => {
