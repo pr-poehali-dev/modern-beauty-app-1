@@ -156,6 +156,19 @@ export default function LoyaltyScreen({ onNavigate }: LoyaltyScreenProps) {
             })}
           </div>
 
+          {/* Expiry notice */}
+          <div className="bg-yellow-50 border-2 border-yellow-300 rounded-2xl px-4 py-4 flex items-start gap-3">
+            <div className="w-10 h-10 bg-yellow-400 rounded-xl flex items-center justify-center shrink-0">
+              <Icon name="AlertTriangle" size={20} className="text-white" />
+            </div>
+            <div>
+              <p className="font-golos font-bold text-base text-yellow-800">Срок действия баллов</p>
+              <p className="font-golos text-sm text-yellow-700 mt-1 leading-relaxed">
+                Баллы сгорают через <span className="font-bold">6 месяцев</span> с момента начисления. Следите за датами в разделе «История».
+              </p>
+            </div>
+          </div>
+
           {/* How to earn */}
           <p className="font-golos font-semibold text-sm text-[hsl(var(--text-main))] mt-1">Как получить баллы</p>
           <div className="bg-white border border-[hsl(var(--border))] rounded-2xl overflow-hidden shadow-sm">
