@@ -12,9 +12,9 @@ const MASTER3 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff
 const MASTER4 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/8c5a4941-6d8d-445a-908c-537218ec19c5.jpg";
 
 const mastersList = [
-  { name: "Анастасия Романова", spec: "Стилист-колорист",    rating: 4.9, reviews: 127, img: MASTER1, freeSlot: "Завтра, 10:00" },
-  { name: "Мария Смирнова",     spec: "Мастер по стрижкам",  rating: 4.8, reviews: 89,  img: MASTER2, freeSlot: "Сегодня, 16:00" },
-  { name: "Елена Козлова",      spec: "Мастер маникюра",     rating: 4.9, reviews: 203, img: MASTER3, freeSlot: "Завтра, 14:30" },
+  { name: "Анастасия Романова", spec: "Стилист-колорист",    rating: 4.9, reviews: 127, img: MASTER1, freeSlot: "29 июля, 10:00" },
+  { name: "Мария Смирнова",     spec: "Мастер по стрижкам",  rating: 4.8, reviews: 89,  img: MASTER2, freeSlot: "29 июля, 16:00" },
+  { name: "Елена Козлова",      spec: "Мастер маникюра",     rating: 4.9, reviews: 203, img: MASTER3, freeSlot: "30 июля, 14:30" },
 
 ];
 
@@ -81,7 +81,7 @@ export default function BookingScreen({ onNavigate }: BookingScreenProps) {
         <div className="text-center space-y-1">
           <p className="font-golos text-[hsl(var(--text-secondary))] text-sm">{selectedService?.name}</p>
           <p className="font-golos font-bold text-[hsl(var(--primary))]">
-            {selectedMaster?.name ?? "Любой мастер"} · {selectedDay} июня, {selectedTime}
+            {selectedMaster?.name ?? "Любой мастер"} · {selectedDay} июля, {selectedTime}
           </p>
         </div>
         <div className="bg-[hsl(var(--orange-light))] rounded-2xl px-5 py-3 w-full text-center border border-[hsl(var(--primary))]/15">
