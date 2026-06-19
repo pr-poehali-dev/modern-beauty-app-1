@@ -28,11 +28,11 @@ const earnActions = [
 ];
 
 const pointsHistory = [
-  { date: "12 мая", desc: "Балаяж + стрижка (2% от 8 500 ₽)", points: "+170", expiry: "12 нояб." },
-  { date: "1 мая",  desc: "Запись через приложение",           points: "+50",  expiry: "1 нояб."  },
-  { date: "1 мая",  desc: "Семейный визит (+3 чел.)",          points: "+250", expiry: "1 нояб."  },
-  { date: "20 апр.", desc: "Маникюр (2% от 1 500 ₽)",         points: "+30",  expiry: "20 окт."  },
-  { date: "1 мая",  desc: "Детская стрижка (2% от 900 ₽)",    points: "+18",  expiry: "1 нояб."  },
+  { date: "12 мая 2026",  desc: "Балаяж + стрижка (2% от 8 500 ₽)", points: "+170", expiry: "12 ноября 2026" },
+  { date: "1 мая 2026",   desc: "Запись через приложение",            points: "+50",  expiry: "1 ноября 2026"  },
+  { date: "1 мая 2026",   desc: "Семейный визит (+3 чел.)",           points: "+250", expiry: "1 ноября 2026"  },
+  { date: "20 апр. 2026", desc: "Маникюр (2% от 1 500 ₽)",           points: "+30",  expiry: "20 октября 2026" },
+  { date: "1 мая 2026",   desc: "Детская стрижка (2% от 900 ₽)",     points: "+18",  expiry: "1 ноября 2026"  },
 ];
 
 const currentPoints = 1240;
@@ -91,7 +91,7 @@ export default function LoyaltyScreen({ onNavigate }: LoyaltyScreenProps) {
             <div className="bg-white/10 rounded-xl px-3 py-1.5 flex items-center gap-2">
               <Icon name="AlertTriangle" size={12} className="text-yellow-200 shrink-0" />
               <p className="font-golos text-[10px] text-white/90">
-                <span className="font-semibold text-yellow-200">320 баллов</span> сгорают 15 июня
+                <span className="font-semibold text-yellow-200">320 баллов</span> сгорают 23 июля 2026
               </p>
             </div>
           </div>
@@ -157,16 +157,11 @@ export default function LoyaltyScreen({ onNavigate }: LoyaltyScreenProps) {
           </div>
 
           {/* Expiry notice */}
-          <div className="bg-yellow-50 border-2 border-yellow-300 rounded-2xl px-4 py-4 flex items-start gap-3">
-            <div className="w-10 h-10 bg-yellow-400 rounded-xl flex items-center justify-center shrink-0">
-              <Icon name="AlertTriangle" size={20} className="text-white" />
-            </div>
-            <div>
-              <p className="font-golos font-bold text-base text-yellow-800">Срок действия баллов</p>
-              <p className="font-golos text-sm text-yellow-700 mt-1 leading-relaxed">
-                Баллы сгорают через <span className="font-bold">6 месяцев</span> с момента начисления. Следите за датами в разделе «История».
-              </p>
-            </div>
+          <div className="bg-yellow-50 border border-yellow-300 rounded-2xl px-3 py-2.5 flex items-center gap-2.5">
+            <Icon name="AlertTriangle" size={15} className="text-yellow-500 shrink-0" />
+            <p className="font-golos text-xs text-yellow-800">
+              Баллы сгорают через <span className="font-bold">6 месяцев</span> с момента начисления. Следите за датами в «Истории».
+            </p>
           </div>
 
           {/* How to earn */}
@@ -189,12 +184,12 @@ export default function LoyaltyScreen({ onNavigate }: LoyaltyScreenProps) {
             <div>
               <p className="font-golos text-white/70 text-[10px]">Накоплено всего</p>
               <p className="font-golos font-bold text-2xl">1 240 Б</p>
-              <p className="font-golos text-white/60 text-[10px]">= 620 ₽</p>
+              <p className="font-golos text-white/60 text-[10px]">= 1 240 ₽ (1 Б = 1 ₽)</p>
             </div>
             <div className="text-right">
               <p className="font-golos text-white/70 text-[10px]">Потрачено</p>
               <p className="font-golos font-bold text-2xl">430 Б</p>
-              <p className="font-golos text-white/60 text-[10px]">= 215 ₽</p>
+              <p className="font-golos text-white/60 text-[10px]">= 430 ₽</p>
             </div>
           </div>
           <div className="space-y-2">
