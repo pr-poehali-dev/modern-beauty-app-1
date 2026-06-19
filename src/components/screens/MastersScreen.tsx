@@ -14,7 +14,7 @@ const WORK1   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff
 const WORK2   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/16cbc8c4-ea9d-4083-9fff-12c510e31a77.jpg";
 const WORK3   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/074f6916-0888-4bbb-a368-79f2886fb8e8.jpg";
 const WORK4   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/2be3e3de-8a61-40c6-b1ec-f14e8efa4bba.jpg";
-const MANI_B1 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/2e6346b7-7c27-4a1c-ba9a-dd7125a344fc.jpg";
+const MANI_B1 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/adfc4523-64c1-4d11-8b15-aac3676977d4.jpg";
 const MANI_A1 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/163e42f3-3bf1-43b8-8eef-8f85a73c696c.jpg";
 const MANI_A2 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/48937ed0-5556-4ace-979d-c44c50919a56.jpg";
 
