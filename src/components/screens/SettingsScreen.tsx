@@ -14,7 +14,7 @@ export default function SettingsScreen({ onNavigate }: SettingsScreenProps) {
   const [sub, setSub] = useState<Sub>(null);
 
   // Account fields
-  const [name, setName]   = useState("Анна Петрова");
+  const [name, setName]   = useState("Петрова Анна Николаевна");
   const [phone, setPhone] = useState("+7 (916) 123-45-67");
   const [email, setEmail] = useState("anna.petrova@mail.ru");
   const [bday, setBday]   = useState("15 марта 1988");

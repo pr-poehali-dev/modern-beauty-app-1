@@ -86,7 +86,7 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
             <span className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-green-400 rounded-full border-2 border-white" />
           </div>
           <div className="min-w-0">
-            <p className="font-golos font-bold text-sm text-[hsl(var(--text-main))] truncate">Анна Петрова</p>
+            <p className="font-golos font-bold text-sm text-[hsl(var(--text-main))] truncate">Петрова Анна Николаевна</p>
             <p className="font-golos text-[10px] text-[hsl(var(--text-secondary))]">⭐ Постоянный гость</p>
             <p className="font-golos text-[10px] text-[hsl(var(--primary))] font-semibold">1 240 Б = 1 240 ₽</p>
           </div>

@@ -103,7 +103,7 @@ export default function LoyaltyScreen({ onNavigate }: LoyaltyScreenProps) {
             </div>
             <div className="flex-1">
               <p className="font-golos font-bold text-sm text-[hsl(var(--text-main))]">Бонусная карта</p>
-              <p className="font-golos text-xs text-[hsl(var(--text-secondary))] mt-0.5">ID: 00142 · Анна Петрова</p>
+              <p className="font-golos text-xs text-[hsl(var(--text-secondary))] mt-0.5">ID: 00142 · Петрова Анна Николаевна</p>
               <p className="font-golos text-[10px] text-[hsl(var(--text-secondary))] mt-2 leading-relaxed">
                 Покажите QR-код мастеру или на кассе для начисления баллов
               </p>

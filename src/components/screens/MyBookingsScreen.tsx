@@ -16,7 +16,7 @@ const CLIENT1 = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff
 const upcoming = [
   {
     id: 1,
-    client: "Анна Петрова",
+    client: "Петрова Анна Николаевна",
     service: "Стрижка + укладка",
     master: "Анастасия Романова",
     masterAvatar: MASTER1,
@@ -42,7 +42,7 @@ const upcoming = [
   },
   {
     id: 3,
-    client: "Анна Петрова",
+    client: "Петрова Анна Николаевна",
     service: "Маникюр + покрытие гель-лак",
     master: "Елена Козлова",
     masterAvatar: MASTER3,
@@ -58,7 +58,7 @@ const upcoming = [
 const past = [
   {
     id: 4,
-    client: "Анна Петрова",
+    client: "Петрова Анна Николаевна",
     service: "Балаяж + стрижка",
     master: "Анастасия Романова",
     masterAvatar: MASTER1,
@@ -89,7 +89,7 @@ const past = [
   },
   {
     id: 6,
-    client: "Анна Петрова",
+    client: "Петрова Анна Николаевна",
     service: "Маникюр классический",
     master: "Елена Козлова",
     masterAvatar: MASTER3,

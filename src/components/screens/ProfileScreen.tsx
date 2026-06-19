@@ -33,7 +33,7 @@ export default function ProfileScreen({ onNavigate }: ProfileScreenProps) {
   const [sub, setSub] = useState<SubScreen>(null);
   const [tab, setTab] = useState<Tab>("profile");
   const [editing, setEditing] = useState(false);
-  const [name, setName] = useState("Анна Петрова");
+  const [name, setName] = useState("Петрова Анна Николаевна");
   const [email, setEmail] = useState("anna.petrova@mail.ru");
   const [bday, setBday] = useState("15 марта 1988");
   const [notes, setNotes] = useState("Аллергия на миндальное масло");
@@ -380,8 +380,8 @@ export default function ProfileScreen({ onNavigate }: ProfileScreenProps) {
       {tab === "family" && (
         <div className="flex flex-col gap-2 animate-fade-in flex-1 overflow-y-auto scrollbar-hide min-h-0">
           {[
-            { name: "Петрова Мария Алексеевна",   relation: "Дочь", age: "8 лет, 03.04.2016",  img: MASHA_IMG, lastVisit: "1 мая 2026",   nextVisit: null,               note: "Боится машинки — только ножницами. Любит каре по плечи" },
-            { name: "Петров Михаил Алексеевич",   relation: "Сын",  age: "13 лет, 17.09.2012", img: MISHA_IMG, lastVisit: "15 апр. 2026", nextVisit: "12 июля 11:00",    note: "Не короче 2 см сверху, машинкой + ножницами" },
+            { name: "Петрова Мария Николаевна",   relation: "Дочь", age: "8 лет, 03.04.2016",  img: MASHA_IMG, lastVisit: "1 мая 2026",   nextVisit: null,               note: "Боится машинки — только ножницами. Любит каре по плечи" },
+            { name: "Петров Михаил Николаевич",   relation: "Сын",  age: "13 лет, 17.09.2012", img: MISHA_IMG, lastVisit: "15 апр. 2026", nextVisit: "12 июля 11:00",    note: "Не короче 2 см сверху, машинкой + ножницами" },
           ].map((m, i) => (
             <div key={i} className="bg-white border border-[hsl(var(--border))] rounded-2xl overflow-hidden shadow-sm">
               <div className="px-4 py-3.5 flex items-center gap-3">

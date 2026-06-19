@@ -17,7 +17,7 @@ const M3      = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff
 const members = [
   {
     id: 1,
-    name: "Петрова Анна Алексеевна",
+    name: "Петрова Анна Николаевна",
     role: "Я",
     relation: "Основной аккаунт",
     gender: "Женский",
@@ -45,7 +45,7 @@ const members = [
   },
   {
     id: 2,
-    name: "Петрова Мария Алексеевна",
+    name: "Петрова Мария Николаевна",
     role: "Дочь",
     relation: "Дочь",
     gender: "Женский",
@@ -73,7 +73,7 @@ const members = [
   },
   {
     id: 3,
-    name: "Петров Михаил Алексеевич",
+    name: "Петров Михаил Николаевич",
     role: "Сын",
     relation: "Сын",
     gender: "Мужской",

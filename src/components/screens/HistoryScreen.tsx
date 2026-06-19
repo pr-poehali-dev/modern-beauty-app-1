@@ -13,9 +13,9 @@ const WORK1   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff
 const WORK2   = "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/16cbc8c4-ea9d-4083-9fff-12c510e31a77.jpg";
 
 const history = [
-  { client: "Анна Петрова",   service: "Балаяж + стрижка",    master: "Анастасия",  masterAvatar: MASTER1, workPhoto: WORK1, date: "12 мая 2026",   price: 8500, points: 170, recommendation: "Маска Olaplex раз в 2 недели", rated: false },
-  { client: "Маша (дочь)",    service: "Детская стрижка",      master: "Мария",      masterAvatar: MASTER2, workPhoto: WORK2, date: "1 мая 2026",    price: 900,  points: 18,  recommendation: null,                           rated: true  },
-  { client: "Анна Петрова",   service: "Маникюр классический", master: "Елена",      masterAvatar: MASTER3, workPhoto: WORK2, date: "20 апр. 2026",  price: 1500, points: 30,  recommendation: null,                           rated: false },
+  { client: "Петрова Анна Николаевна",   service: "Балаяж + стрижка",    master: "Анастасия",  masterAvatar: MASTER1, workPhoto: WORK1, date: "12 мая 2026",   price: 8500, points: 170, recommendation: "Маска Olaplex раз в 2 недели", rated: false },
+  { client: "Петрова Мария Николаевна",  service: "Детская стрижка",      master: "Мария",      masterAvatar: MASTER2, workPhoto: WORK2, date: "1 мая 2026",    price: 900,  points: 18,  recommendation: null,                           rated: true  },
+  { client: "Петрова Анна Николаевна",   service: "Маникюр классический", master: "Елена",      masterAvatar: MASTER3, workPhoto: WORK2, date: "20 апр. 2026",  price: 1500, points: 30,  recommendation: null,                           rated: false },
 ];
 
 type ReviewModal = { idx: number; stars: number; text: string; withPhoto: boolean } | null;
@@ -28,7 +28,7 @@ export default function HistoryScreen({ onNavigate }: HistoryScreenProps) {
   const [submitted, setSubmitted] = useState<number[]>([]);
 
   const filtered = history.filter(v =>
-    filter === "all" ? true : filter === "self" ? v.client === "Анна Петрова" : v.client !== "Анна Петрова"
+    filter === "all" ? true : filter === "self" ? v.client === "Петрова Анна Николаевна" : v.client !== "Петрова Анна Николаевна"
   );
 
   /* ── REVIEW ── */
@@ -128,7 +128,7 @@ export default function HistoryScreen({ onNavigate }: HistoryScreenProps) {
                     </div>
                   )}
                   {/* Client badge */}
-                  {visit.client !== "Анна Петрова" && (
+                  {visit.client !== "Петрова Анна Николаевна" && (
                     <div className="flex items-center gap-1.5">
                       <Icon name="User" size={11} className="text-[hsl(var(--text-secondary))]" />
                       <span className="font-golos text-xs text-[hsl(var(--text-secondary))]">{visit.client}</span>
