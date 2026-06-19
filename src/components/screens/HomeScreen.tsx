@@ -66,7 +66,7 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
         <img src={MASTER1} alt="Мастер" className="w-11 h-11 rounded-xl object-cover shrink-0" />
         <div className="flex-1 min-w-0">
           <p className="font-golos font-semibold text-sm text-[hsl(var(--text-main))] truncate">Стрижка + укладка</p>
-          <p className="font-golos text-xs text-[hsl(var(--text-secondary))]">Анастасия · <span className="text-[hsl(var(--primary))] font-semibold">5 июня, 14:30</span></p>
+          <p className="font-golos text-xs text-[hsl(var(--text-secondary))]">Анастасия · <span className="text-[hsl(var(--primary))] font-semibold">5 июля, 14:30</span></p>
         </div>
         <div className="flex gap-1.5 shrink-0">
           <button onClick={() => onNavigate("booking")} className="gradient-orange text-white font-golos font-medium text-xs px-2.5 py-1.5 rounded-lg">Перенести</button>
