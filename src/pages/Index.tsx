@@ -132,12 +132,12 @@ export default function Index() {
               <Icon name="CalendarDays" size={20} className="text-[hsl(var(--text-secondary))]" />
               <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[hsl(var(--primary))] rounded-full text-white text-[9px] font-bold flex items-center justify-center">3</span>
             </button>
-            {/* Чат */}
+            {/* Уведомления */}
             <button
               onClick={() => navigateTo("chat")}
               className="w-11 h-11 rounded-2xl bg-white border border-[hsl(var(--border))] flex items-center justify-center transition-all active:scale-95 relative shadow-sm"
             >
-              <Icon name="MessageCircle" size={20} className="text-[hsl(var(--text-secondary))]" />
+              <Icon name="Bell" size={20} className="text-[hsl(var(--text-secondary))]" />
               <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-[hsl(var(--primary))] rounded-full border-2 border-[hsl(var(--gray-soft))]" />
             </button>
             {/* Настройки */}
