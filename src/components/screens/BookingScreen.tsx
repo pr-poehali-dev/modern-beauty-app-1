@@ -15,7 +15,7 @@ const mastersList = [
   { name: "Анастасия Романова", spec: "Стилист-колорист",    rating: 4.9, reviews: 127, img: MASTER1, freeSlot: "Завтра, 10:00" },
   { name: "Мария Смирнова",     spec: "Мастер по стрижкам",  rating: 4.8, reviews: 89,  img: MASTER2, freeSlot: "Сегодня, 16:00" },
   { name: "Елена Козлова",      spec: "Мастер маникюра",     rating: 4.9, reviews: 203, img: MASTER3, freeSlot: "Завтра, 14:30" },
-  { name: "Светлана Новикова",  spec: "Парикмахер-универсал",rating: 4.7, reviews: 156, img: MASTER4, freeSlot: "Послезавтра" },
+
 ];
 
 const serviceCats = [

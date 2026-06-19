@@ -33,7 +33,7 @@ const masters = [
   { name: "Анастасия", img: MASTER1, free: "Завтра 10:00" },
   { name: "Мария",     img: MASTER2, free: "Сегодня 16:00" },
   { name: "Елена",     img: MASTER3, free: "Завтра 14:30" },
-  { name: "Светлана",  img: MASTER4, free: "Послезавтра" },
+
 ];
 
 export default function HomeScreen({ onNavigate }: HomeScreenProps) {
