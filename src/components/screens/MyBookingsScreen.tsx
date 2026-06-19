@@ -353,9 +353,16 @@ export default function MyBookingsScreen({ onNavigate }: MyBookingsScreenProps) 
                   <span className="font-golos text-xs">{visit.address}</span>
                 </div>
 
-                {/* Bonus payment block */}
+                {/* Needs payment banner */}
                 {visit.needsPayment && (
-                  <BonusPaymentBlock price={visit.price} maxBonusPercent={visit.maxBonusPercent!} />
+                  <button
+                    onClick={() => onNavigate("payment")}
+                    className="w-full mb-4 py-3 gradient-orange text-white font-golos font-semibold text-sm rounded-xl orange-glow flex items-center justify-center gap-2"
+                  >
+                    <Icon name="CreditCard" size={16} className="text-white" />
+                    Оплатить {visit.price.toLocaleString()} ₽
+                    <span className="bg-white/20 text-white text-[10px] font-semibold px-2 py-0.5 rounded-lg ml-1">до 10% баллами</span>
+                  </button>
                 )}
 
                 {/* Actions */}

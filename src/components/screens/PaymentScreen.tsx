@@ -15,9 +15,9 @@ export default function PaymentScreen({ onNavigate }: PaymentScreenProps) {
   const [pointsToUse, setPointsToUse] = useState(0);
   const [paid, setPaid] = useState(false);
 
-  const servicePrice = 2500;
+  const servicePrice = 4200;
   const availablePoints = 1240;
-  const maxPointsPercent = 7; // уровень «Постоянный гость»
+  const maxPointsPercent = 10;
   const maxPoints = Math.floor(servicePrice * maxPointsPercent / 100);
   const earnedPoints = Math.round(servicePrice * 0.05);
 
@@ -96,9 +96,9 @@ export default function PaymentScreen({ onNavigate }: PaymentScreenProps) {
         <div className="flex items-center gap-3">
           <img src={MASTER1} alt="Мастер" className="w-14 h-14 rounded-2xl object-cover shrink-0" />
           <div className="flex-1">
-            <p className="font-golos font-semibold text-[hsl(var(--text-main))]">Стрижка + укладка</p>
+            <p className="font-golos font-semibold text-[hsl(var(--text-main))]">Окрашивание корней + уход</p>
             <p className="font-golos text-sm text-[hsl(var(--text-secondary))]">Анастасия Романова</p>
-            <p className="font-golos text-xs text-[hsl(var(--text-secondary))] mt-0.5">5 июня 2026, 14:30</p>
+            <p className="font-golos text-xs text-[hsl(var(--text-secondary))] mt-0.5">29 июня 2026, 12:00</p>
           </div>
           <p className="font-golos font-bold text-xl text-[hsl(var(--text-main))]">{servicePrice.toLocaleString()} ₽</p>
         </div>
