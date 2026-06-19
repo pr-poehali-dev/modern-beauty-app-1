@@ -95,8 +95,8 @@ const masters = [
     freeSlot: "Сегодня, 18:00",
     avatar: MASTER4,
     works: [
-      { before: WORK3, after: WORK4, desc: "Архитектура и окрашивание бровей" },
-      { before: WORK1, after: WORK3, desc: "Ламинирование ресниц" },
+      { before: "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/ac9d3a95-587e-4a39-b9f1-2707b93b7457.jpg", after: "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/cb55cb4d-1728-42fc-a6fd-cc5f3421a9c7.jpg", desc: "Окрашивание и архитектура бровей" },
+      { before: "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/3d70fe3e-a72c-4ae0-8019-a8d16b0f88db.jpg", after: "https://cdn.poehali.dev/projects/c62f3c86-4f40-47f9-a8bf-18e3ff8689ae/files/bc7f2995-f2b3-4537-b997-691d805fdbe6.jpg", desc: "Наращивание ресниц" },
     ],
     certs: [
       "Brow Master Pro, Академия красоты 2024",
