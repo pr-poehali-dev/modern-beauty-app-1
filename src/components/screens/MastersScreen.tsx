@@ -35,6 +35,12 @@ const masters = [
       "Мастер-класс Wella Professionals 2022",
       "Balayage Expert, Schwarzkopf 2021",
     ],
+    reviewsList: [
+      { name: "Ольга М.", rating: 5, date: "12 июня 2026", text: "Анастасия — настоящий волшебник! Просила мягкий балаяж на тёмных волосах, а получила шедевр. Цвет держится уже второй месяц, волосы живые и блестящие. Однозначно только к ней!" },
+      { name: "Светлана К.", rating: 5, date: "3 июня 2026", text: "Делала омбре первый раз в жизни и очень боялась. Настя всё объяснила, подобрала оттенки под тон кожи. Результат превзошёл ожидания — подруги засыпали комплиментами." },
+      { name: "Дарья Р.", rating: 5, date: "21 мая 2026", text: "Сложное многоуровневое окрашивание за один сеанс — казалось нереальным, но Анастасия справилась блестяще. Очень аккуратная работа, ни одного лишнего движения." },
+      { name: "Наталья В.", rating: 4, date: "10 мая 2026", text: "Прекрасный мастер с тонким чувством цвета. Чуть дольше ожидала результата, чем планировала, но итог того стоил — балаяж получился натуральным и свежим." },
+    ],
   },
   {
     name: "Мария Смирнова", title: "Мастер по стрижкам", quote: "«Стрижка — начало нового образа»",
@@ -50,6 +56,12 @@ const masters = [
     certs: [
       "Курс стрижек Toni&Guy Academy 2023",
       "Детские стрижки, сертификат Comber 2022",
+    ],
+    reviewsList: [
+      { name: "Алина Т.", rating: 5, date: "15 июня 2026", text: "Пришла с длинными волосами без формы — ушла с идеальным каре. Мария умеет слушать и делает именно то, что хочешь. Стрижка лежит сама по себе, даже без укладки." },
+      { name: "Игорь С.", rating: 5, date: "8 июня 2026", text: "Хожу к Марии уже год на мужскую стрижку. Чёткий контур, аккуратный вид, ничего лишнего. Рекомендую всем коллегам — реально лучший мастер по стрижкам в городе." },
+      { name: "Татьяна Л.", rating: 5, date: "28 мая 2026", text: "Привела дочку 6 лет — боялась, что будет капризничать. Мария нашла подход моментально, ребёнок сидел спокойно и доволен. Стрижка аккуратная, детский опыт чувствуется." },
+      { name: "Виктория Н.", rating: 4, date: "15 мая 2026", text: "Отличная стрижка с текстурой и слоями — именно то, что просила. Единственное — немного долго ждала в очереди, но мастер стоит своего времени." },
     ],
   },
   {
@@ -67,12 +79,18 @@ const masters = [
       "Nail Art Professional 2024",
       "Brovi Master, Академия красоты 2022",
     ],
+    reviewsList: [
+      { name: "Анна П.", rating: 5, date: "17 июня 2026", text: "Лена — лучший мастер маникюра, которого я встречала! Покрытие держится три недели без сколов. Руки выглядят ухоженно и аккуратно. Уже записалась на следующий раз." },
+      { name: "Марина Ф.", rating: 5, date: "9 июня 2026", text: "Делала брови впервые — Елена подобрала форму идеально под мой тип лица. Объяснила как ухаживать дома. Результат держится дольше, чем ожидала. Очень рекомендую!" },
+      { name: "Ксения Д.", rating: 5, date: "1 июня 2026", text: "Педикюр на высшем уровне — и массаж, и покрытие, и уход. Лена работает быстро, чисто, без лишних движений. Ноги выглядят великолепно, иду к ней уже полгода." },
+      { name: "Людмила О.", rating: 5, date: "20 мая 2026", text: "Сделала маникюр с дизайном — тонкие линии, градиент. Сложная работа, но Елена справилась за разумное время. Такого аккуратного nail art в нашем городе больше не найти." },
+    ],
   },
 ];
 
 const filters = ["Все", "Стрижки", "Окрашивание", "Маникюр", "Брови", "Укладки"];
 
-type DetailTab = "works" | "certs";
+type DetailTab = "works" | "certs" | "reviews";
 
 export default function MastersScreen({ onNavigate }: MastersScreenProps) {
   const [selected, setSelected] = useState<typeof masters[0] | null>(null);
@@ -139,7 +157,7 @@ export default function MastersScreen({ onNavigate }: MastersScreenProps) {
         {/* Tab switcher */}
         <div className="px-4 pb-2 shrink-0">
           <div className="flex bg-white rounded-2xl p-1 gap-1 border border-[hsl(var(--border))] shadow-sm">
-            {([["works","Мои работы"], ["certs","Сертификаты и образование"]] as [DetailTab, string][]).map(([key, label]) => (
+            {([["works","Работы"], ["reviews","Отзывы"], ["certs","Образование"]] as [DetailTab, string][]).map(([key, label]) => (
               <button key={key} onClick={() => setDetailTab(key)}
                 className={`flex-1 py-2 rounded-xl font-golos text-xs font-semibold transition-all ${detailTab === key ? "gradient-orange text-white shadow-sm" : "text-[hsl(var(--text-secondary))]"}`}>
                 {label}
@@ -172,6 +190,47 @@ export default function MastersScreen({ onNavigate }: MastersScreenProps) {
               className="w-full py-3.5 bg-white border border-[hsl(var(--border))] rounded-2xl font-golos font-semibold text-sm text-[hsl(var(--text-main))] shadow-sm">
               Записаться к {selected.name.split(" ")[0]} →
             </button>
+          </div>
+        )}
+
+        {/* ── REVIEWS TAB ── */}
+        {detailTab === "reviews" && (
+          <div className="px-4 pb-4 space-y-3 animate-fade-in">
+            <div className="bg-[hsl(var(--orange-light))] border border-[hsl(var(--primary))]/15 rounded-2xl px-4 py-3 flex items-center gap-3">
+              <div className="gradient-orange w-12 h-12 rounded-2xl flex flex-col items-center justify-center shrink-0">
+                <span className="font-golos font-bold text-white text-lg leading-none">{selected.rating}</span>
+                <div className="flex gap-0.5 mt-0.5">
+                  {[1,2,3,4,5].map(s => (
+                    <Icon key={s} name="Star" size={8} className={s <= Math.floor(selected.rating) ? "text-white fill-white" : "text-white/40"} />
+                  ))}
+                </div>
+              </div>
+              <div>
+                <p className="font-golos font-bold text-sm text-[hsl(var(--text-main))]">{selected.reviews} отзывов</p>
+                <p className="font-golos text-xs text-[hsl(var(--text-secondary))]">Средняя оценка клиентов</p>
+              </div>
+            </div>
+            {selected.reviewsList.map((r, i) => (
+              <div key={i} className="bg-white border border-[hsl(var(--border))] rounded-2xl px-4 py-3.5 shadow-sm space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 gradient-orange rounded-xl flex items-center justify-center shrink-0">
+                      <span className="font-golos font-bold text-white text-sm">{r.name.charAt(0)}</span>
+                    </div>
+                    <div>
+                      <p className="font-golos font-semibold text-sm text-[hsl(var(--text-main))]">{r.name}</p>
+                      <p className="font-golos text-[10px] text-[hsl(var(--text-secondary))]">{r.date}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-0.5">
+                    {[1,2,3,4,5].map(s => (
+                      <Icon key={s} name="Star" size={11} className={s <= r.rating ? "text-yellow-400 fill-yellow-400" : "text-[hsl(var(--border))]"} />
+                    ))}
+                  </div>
+                </div>
+                <p className="font-golos text-sm text-[hsl(var(--text-secondary))] leading-relaxed">{r.text}</p>
+              </div>
+            ))}
           </div>
         )}
 
