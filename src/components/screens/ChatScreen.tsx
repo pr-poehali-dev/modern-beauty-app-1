@@ -51,19 +51,7 @@ const quickActions = [
   { icon: "Star",          label: "Узнать о бонусах",   text: "Расскажите об акциях и бонусах" },
 ];
 
-type Tab = "messages" | "notifications";
-
-const notifications = [
-  { id: 1, icon: "CalendarCheck", color: "bg-[hsl(var(--orange-light))] text-[hsl(var(--primary))]", title: "Запись подтверждена", text: "Стрижка + укладка · 29 июня, 14:30 · Анастасия", time: "10:00", date: "Сегодня", unread: true },
-  { id: 2, icon: "Sparkles",      color: "bg-[hsl(var(--orange-light))] text-[hsl(var(--primary))]", title: "Начислено 170 баллов", text: "За балаяж + стрижку от 12 мая · Баланс: 1 240 Б", time: "12 мая", date: "12 мая", unread: true },
-  { id: 3, icon: "AlertTriangle", color: "bg-yellow-50 text-yellow-500",                             title: "Баллы сгорают!", text: "320 баллов сгорят 15 июля — успейте использовать", time: "9:00", date: "Вчера", unread: false },
-  { id: 4, icon: "Calendar",      color: "bg-[hsl(var(--orange-light))] text-[hsl(var(--primary))]", title: "Напоминание о записи", text: "Завтра в 14:30 — Стрижка + укладка у Анастасии", time: "19:00", date: "Вчера", unread: false },
-  { id: 5, icon: "Percent",       color: "bg-green-50 text-green-500",                               title: "Акция: Маникюр + педикюр", text: "−15% если записаться в один день · до 15 июля", time: "11:00", date: "26 июня", unread: false },
-  { id: 6, icon: "Gift",          color: "bg-purple-50 text-purple-500",                             title: "Семейный бонус", text: "Михаил записан — начислено +50 Б за запись через приложение", time: "15:30", date: "24 июня", unread: false },
-];
-
 export default function ChatScreen({ onNavigate }: ChatScreenProps) {
-  const [tab, setTab] = useState<Tab>("messages");
   const [activeDialog, setActiveDialog] = useState<Dialog | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -103,81 +91,35 @@ export default function ChatScreen({ onNavigate }: ChatScreenProps) {
   /* ── DIALOG LIST ── */
   if (!activeDialog) {
     const totalUnread = dialogs.reduce((s, d) => s + d.unread, 0);
-    const notifUnread = notifications.filter(n => n.unread).length;
     return (
       <div className="flex flex-col h-full px-4 pt-1 pb-2 gap-2.5 animate-fade-in">
-        {/* Header */}
         <div className="flex items-center justify-between shrink-0">
           <h2 className="font-golos font-bold text-lg text-[hsl(var(--text-main))]">Сообщения</h2>
-          {(totalUnread + notifUnread) > 0 && (
-            <span className="gradient-orange text-white text-xs font-bold px-3 py-1 rounded-xl">{totalUnread + notifUnread} новых</span>
+          {totalUnread > 0 && (
+            <span className="gradient-orange text-white text-xs font-bold px-3 py-1 rounded-xl">{totalUnread} новых</span>
           )}
         </div>
-
-        {/* Tabs */}
-        <div className="flex bg-white rounded-2xl p-1 gap-1 border border-[hsl(var(--border))] shadow-sm shrink-0">
-          {([["messages", "Чат", totalUnread], ["notifications", "Уведомления", notifUnread]] as [Tab, string, number][]).map(([key, label, cnt]) => (
-            <button key={key} onClick={() => setTab(key)}
-              className={`flex-1 py-2 rounded-xl font-golos text-xs font-semibold transition-all flex items-center justify-center gap-1 ${tab === key ? "gradient-orange text-white shadow-sm" : "text-[hsl(var(--text-secondary))]"}`}>
-              {label}
-              {cnt > 0 && <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full ${tab === key ? "bg-white/30 text-white" : "bg-[hsl(var(--primary))] text-white"}`}>{cnt}</span>}
+        <div className="flex-1 overflow-y-auto scrollbar-hide min-h-0 space-y-2">
+          {[...dialogs].sort((a, b) => b.unread - a.unread).map((dialog) => (
+            <button key={dialog.id} onClick={() => setActiveDialog(dialog)}
+              className="w-full bg-white border border-[hsl(var(--border))] rounded-2xl p-3 flex items-center gap-3 shadow-sm text-left transition-all active:scale-98">
+              <div className="relative shrink-0">
+                <img src={dialog.avatar} alt={dialog.name} className="w-12 h-12 rounded-2xl object-cover" />
+                <span className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-white ${dialog.online ? "bg-green-400" : "bg-gray-300"}`} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between mb-0.5">
+                  <p className="font-golos font-semibold text-sm text-[hsl(var(--text-main))] truncate flex-1 pr-2">{dialog.name}</p>
+                  <span className="font-golos text-[10px] text-[hsl(var(--text-secondary))] shrink-0">{dialog.lastTime}</span>
+                </div>
+                <p className={`font-golos text-xs truncate ${dialog.unread > 0 ? "font-medium text-[hsl(var(--text-main))]" : "text-[hsl(var(--text-secondary))]"}`}>{dialog.lastMessage}</p>
+              </div>
+              {dialog.unread > 0 && (
+                <span className="w-5 h-5 gradient-orange rounded-full text-white text-[10px] font-bold flex items-center justify-center shrink-0">{dialog.unread}</span>
+              )}
             </button>
           ))}
         </div>
-
-        {/* ── MESSAGES TAB ── */}
-        {tab === "messages" && (
-          <div className="flex-1 overflow-y-auto scrollbar-hide min-h-0 space-y-2">
-            {[...dialogs].sort((a, b) => b.unread - a.unread).map((dialog) => (
-              <button key={dialog.id} onClick={() => setActiveDialog(dialog)}
-                className="w-full bg-white border border-[hsl(var(--border))] rounded-2xl p-3 flex items-center gap-3 shadow-sm text-left transition-all active:scale-98">
-                <div className="relative shrink-0">
-                  <img src={dialog.avatar} alt={dialog.name} className="w-12 h-12 rounded-2xl object-cover" />
-                  <span className={`absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-white ${dialog.online ? "bg-green-400" : "bg-gray-300"}`} />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between mb-0.5">
-                    <p className="font-golos font-semibold text-sm text-[hsl(var(--text-main))] truncate flex-1 pr-2">{dialog.name}</p>
-                    <span className="font-golos text-[10px] text-[hsl(var(--text-secondary))] shrink-0">{dialog.lastTime}</span>
-                  </div>
-                  <p className={`font-golos text-xs truncate ${dialog.unread > 0 ? "font-medium text-[hsl(var(--text-main))]" : "text-[hsl(var(--text-secondary))]"}`}>{dialog.lastMessage}</p>
-                </div>
-                {dialog.unread > 0 && (
-                  <span className="w-5 h-5 gradient-orange rounded-full text-white text-[10px] font-bold flex items-center justify-center shrink-0">{dialog.unread}</span>
-                )}
-              </button>
-            ))}
-          </div>
-        )}
-
-        {/* ── NOTIFICATIONS TAB ── */}
-        {tab === "notifications" && (
-          <div className="flex-1 overflow-y-auto scrollbar-hide min-h-0 space-y-2">
-            {(() => {
-              let lastDate = "";
-              return notifications.map((n) => (
-                <div key={n.id}>
-                  {n.date !== lastDate && (() => { lastDate = n.date; return (
-                    <p className="font-golos text-[10px] text-[hsl(var(--text-secondary))] font-semibold uppercase tracking-wider px-1 pt-1 pb-0.5">{n.date}</p>
-                  ); })()}
-                  <div className={`bg-white border rounded-2xl p-3.5 flex items-start gap-3 shadow-sm ${n.unread ? "border-[hsl(var(--primary))]/30" : "border-[hsl(var(--border))]"}`}>
-                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${n.color.split(" ")[0]}`}>
-                      <Icon name={n.icon} size={16} className={n.color.split(" ")[1]} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between mb-0.5">
-                        <p className={`font-golos font-semibold text-sm text-[hsl(var(--text-main))] truncate flex-1 pr-2 ${n.unread ? "font-bold" : ""}`}>{n.title}</p>
-                        <span className="font-golos text-[10px] text-[hsl(var(--text-secondary))] shrink-0">{n.time}</span>
-                      </div>
-                      <p className="font-golos text-xs text-[hsl(var(--text-secondary))] leading-relaxed">{n.text}</p>
-                    </div>
-                    {n.unread && <span className="w-2 h-2 gradient-orange rounded-full shrink-0 mt-1" />}
-                  </div>
-                </div>
-              ));
-            })()}
-          </div>
-        )}
       </div>
     );
   }

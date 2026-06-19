@@ -15,13 +15,14 @@ import SalonScreen from "@/components/screens/SalonScreen";
 import SettingsScreen from "@/components/screens/SettingsScreen";
 import PromoScreen from "@/components/screens/PromoScreen";
 import FamilyScreen from "@/components/screens/FamilyScreen";
+import NotificationsScreen from "@/components/screens/NotificationsScreen";
 import BottomNav from "@/components/BottomNav";
 import Icon from "@/components/ui/icon";
 
 export type Screen =
   | "home" | "booking" | "history" | "loyalty" | "profile"
   | "masters" | "catalog" | "chat" | "login"
-  | "my-bookings" | "payment" | "salon" | "settings" | "promos" | "family";
+  | "my-bookings" | "payment" | "salon" | "settings" | "promos" | "family" | "notifications";
 
 export default function Index() {
   const [activeScreen, setActiveScreen] = useState<Screen>("home");
@@ -79,8 +80,9 @@ export default function Index() {
       case "salon":       return <SalonScreen onNavigate={navigateTo} />;
       case "settings":    return <SettingsScreen onNavigate={navigateTo} />;
       case "promos":      return <PromoScreen onNavigate={navigateTo} />;
-      case "family":      return <FamilyScreen onNavigate={navigateTo} onBack={goBack} />;
-      default:            return <HomeScreen onNavigate={navigateTo} />;
+      case "family":         return <FamilyScreen onNavigate={navigateTo} onBack={goBack} />;
+      case "notifications":  return <NotificationsScreen onNavigate={navigateTo} />;
+      default:               return <HomeScreen onNavigate={navigateTo} />;
     }
   };
 
@@ -134,7 +136,7 @@ export default function Index() {
             </button>
             {/* Уведомления */}
             <button
-              onClick={() => navigateTo("chat")}
+              onClick={() => navigateTo("notifications")}
               className="w-11 h-11 rounded-2xl bg-white border border-[hsl(var(--border))] flex items-center justify-center transition-all active:scale-95 relative shadow-sm"
             >
               <Icon name="Bell" size={20} className="text-[hsl(var(--text-secondary))]" />
