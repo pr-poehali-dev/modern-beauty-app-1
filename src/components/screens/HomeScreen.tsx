@@ -105,10 +105,10 @@ export default function HomeScreen({ onNavigate }: HomeScreenProps) {
                 <p className="font-golos text-[9px] font-semibold text-[hsl(var(--text-secondary))]">{m.name}</p>
               </div>
             ))}
-            <button onClick={e => { e.stopPropagation(); onNavigate("booking"); }}
-              className="w-9 h-9 rounded-xl bg-[hsl(var(--orange-light))] flex items-center justify-center border border-[hsl(var(--primary))]/20 shrink-0">
+            <div onClick={e => { e.stopPropagation(); onNavigate("booking"); }}
+              className="w-9 h-9 rounded-xl bg-[hsl(var(--orange-light))] flex items-center justify-center border border-[hsl(var(--primary))]/20 shrink-0 cursor-pointer active:scale-95 transition-all">
               <Icon name="CalendarPlus" size={14} className="text-[hsl(var(--primary))]" />
-            </button>
+            </div>
           </div>
         </button>
       </div>
