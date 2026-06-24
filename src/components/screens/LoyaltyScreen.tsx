@@ -42,8 +42,87 @@ const progressPercent = Math.min(((currentPoints - currentLevel.min) / (nextLeve
 
 type Tab = "card" | "program" | "history";
 
+const REFERRAL_LINK = "https://modern.salon/invite/00142";
+
 export default function LoyaltyScreen({ onNavigate }: LoyaltyScreenProps) {
   const [tab, setTab] = useState<Tab>("card");
+  const [showReferral, setShowReferral] = useState(false);
+
+  if (showReferral) {
+    return (
+      <div className="flex flex-col h-full px-4 pt-2 pb-4 gap-3 animate-slide-in-right overflow-y-auto scrollbar-hide">
+        {/* Header */}
+        <div className="flex items-center gap-3 shrink-0">
+          <button onClick={() => setShowReferral(false)}
+            className="w-9 h-9 bg-white border border-[hsl(var(--border))] rounded-xl flex items-center justify-center shadow-sm shrink-0">
+            <Icon name="ChevronLeft" size={18} className="text-[hsl(var(--text-secondary))]" />
+          </button>
+          <h2 className="font-golos font-bold text-lg text-[hsl(var(--text-main))]">Пригласить друга</h2>
+        </div>
+
+        {/* Hero */}
+        <div className="gradient-orange rounded-3xl px-5 py-6 flex flex-col items-center gap-2 orange-glow">
+          <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center">
+            <Icon name="Gift" size={32} className="text-white" />
+          </div>
+          <p className="font-golos font-bold text-2xl text-white text-center">+200 баллов<br/>за каждого друга</p>
+          <p className="font-golos text-sm text-white/80 text-center">И друг получает 150 баллов на первый визит</p>
+        </div>
+
+        {/* How it works */}
+        <div className="bg-white border border-[hsl(var(--border))] rounded-2xl px-4 py-4 shadow-sm space-y-3">
+          <p className="font-golos font-bold text-sm text-[hsl(var(--text-main))]">Как это работает</p>
+          {[
+            { step: "1", icon: "Share2",     text: "Отправьте другу свою реферальную ссылку или QR-код" },
+            { step: "2", icon: "UserPlus",   text: "Друг регистрируется в приложении по вашей ссылке" },
+            { step: "3", icon: "Calendar",   text: "Друг записывается и приходит на первый визит" },
+            { step: "4", icon: "Sparkles",   text: "Вы получаете 200 баллов, друг — 150 приветственных" },
+          ].map(({ step, icon, text }) => (
+            <div key={step} className="flex items-center gap-3">
+              <div className="w-8 h-8 gradient-orange rounded-xl flex items-center justify-center shrink-0">
+                <Icon name={icon} size={15} className="text-white" />
+              </div>
+              <p className="font-golos text-sm text-[hsl(var(--text-secondary))] leading-snug flex-1">{text}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Conditions */}
+        <div className="bg-white border border-[hsl(var(--border))] rounded-2xl px-4 py-4 shadow-sm space-y-2">
+          <p className="font-golos font-bold text-sm text-[hsl(var(--text-main))]">Условия программы</p>
+          {[
+            "Баллы начисляются после первого визита приглашённого друга",
+            "Друг должен зарегистрироваться именно по вашей ссылке",
+            "Количество приглашений не ограничено",
+            "Начисленные баллы действуют 180 дней",
+          ].map((text, i) => (
+            <div key={i} className="flex items-start gap-2">
+              <Icon name="CheckCircle" size={14} className="text-[hsl(var(--primary))] shrink-0 mt-0.5" />
+              <p className="font-golos text-xs text-[hsl(var(--text-secondary))] leading-relaxed">{text}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* QR code */}
+        <div className="bg-white border border-[hsl(var(--border))] rounded-2xl px-4 py-4 shadow-sm flex flex-col items-center gap-3">
+          <p className="font-golos font-bold text-sm text-[hsl(var(--text-main))]">Ваш персональный QR-код</p>
+          <div className="bg-[hsl(var(--orange-light))] rounded-2xl p-3">
+            <img src={QR_INVITE} alt="Реферальный QR" className="w-28 h-28" />
+          </div>
+          <div className="w-full bg-[hsl(var(--gray-soft))] rounded-xl px-3 py-2.5 flex items-center justify-between gap-2">
+            <p className="font-golos text-xs text-[hsl(var(--text-secondary))] truncate flex-1">{REFERRAL_LINK}</p>
+            <Icon name="Copy" size={14} className="text-[hsl(var(--primary))] shrink-0" />
+          </div>
+        </div>
+
+        {/* Share button */}
+        <button className="w-full py-4 gradient-orange text-white font-golos font-semibold rounded-2xl orange-glow flex items-center justify-center gap-2">
+          <Icon name="Share2" size={18} />
+          Поделиться ссылкой
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col h-full px-4 pt-1 pb-2 gap-3 animate-fade-in">
@@ -121,7 +200,8 @@ export default function LoyaltyScreen({ onNavigate }: LoyaltyScreenProps) {
               <Icon name="Zap" size={15} className="text-white" />
               <span className="font-golos font-semibold text-sm">Потратить баллы</span>
             </button>
-            <div className="bg-white border border-[hsl(var(--border))] rounded-2xl p-3 flex items-center gap-3 shadow-sm">
+            <button onClick={() => setShowReferral(true)}
+              className="bg-white border border-[hsl(var(--border))] rounded-2xl p-3 flex items-center gap-3 shadow-sm text-left active:scale-95 transition-all">
               <div className="bg-[hsl(var(--gray-soft))] rounded-xl p-1.5 shrink-0">
                 <img src={QR_INVITE} alt="Пригласить" className="w-9 h-9" />
               </div>
@@ -129,7 +209,7 @@ export default function LoyaltyScreen({ onNavigate }: LoyaltyScreenProps) {
                 <p className="font-golos font-semibold text-xs text-[hsl(var(--text-main))]">Пригласить друга</p>
                 <p className="font-golos text-[10px] text-[hsl(var(--primary))] font-semibold">+200 Б вам</p>
               </div>
-            </div>
+            </button>
           </div>
         </div>
       )}
